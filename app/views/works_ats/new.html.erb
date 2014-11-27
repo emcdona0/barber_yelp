@@ -1,0 +1,157 @@
+<!-- Validation failure messages -->
+
+<% if @works_at.errors.any? %>
+  <% @works_at.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<!-- Simple full-width example-->
+
+<div class="page-header">
+  <h1>Add Works At</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_works_at" class="form-horizontal">
+      <!-- Label and input for barbershop_id -->
+      <div class="form-group">
+        <label for="barbershop_id" class="col-sm-2 control-label">
+          Barbershop
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="barbershop_id" name="barbershop_id" placeholder="Barbershop" class="form-control" value="<%= @works_at.barbershop_id %>">
+        </div>
+      </div>
+
+      <!-- Label and input for barber_id -->
+      <div class="form-group">
+        <label for="barber_id" class="col-sm-2 control-label">
+          Barber
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @works_at.barber_id %>">
+        </div>
+      </div>
+
+      <!-- Label and input for start_time -->
+      <div class="form-group">
+        <label for="start_time" class="col-sm-2 control-label">
+          Start time
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @works_at.start_time %>">
+        </div>
+      </div>
+
+      <!-- Label and input for end_time -->
+      <div class="form-group">
+        <label for="end_time" class="col-sm-2 control-label">
+          End time
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="end_time" name="end_time" placeholder="End time" class="form-control" value="<%= @works_at.end_time %>">
+        </div>
+      </div>
+
+      <!-- Label and input for day_of_week -->
+      <div class="form-group">
+        <label for="day_of_week" class="col-sm-2 control-label">
+          Day of week
+        </label>
+        <div class="col-sm-10">
+          <input type="text" id="day_of_week" name="day_of_week" placeholder="Day of week" class="form-control" value="<%= @works_at.day_of_week %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" value="Create Works At" class="btn btn-success">
+          or
+          <a href="/works_ats">Cancel</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- End simple full-width example-->
+
+<!-- Responsive panel example -->
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add Works At</h3>
+      </div>
+      <div class="panel-body">
+        <form action="/create_works_at" class="form-horizontal">
+          <!-- Label and input for barbershop_id -->
+          <div class="form-group">
+            <label for="barbershop_id" class="col-sm-2 control-label">
+              Barbershop
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="barbershop_id" name="barbershop_id" placeholder="Barbershop" class="form-control" value="<%= @works_at.barbershop_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for barber_id -->
+          <div class="form-group">
+            <label for="barber_id" class="col-sm-2 control-label">
+              Barber
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @works_at.barber_id %>">
+            </div>
+          </div>
+
+          <!-- Label and input for start_time -->
+          <div class="form-group">
+            <label for="start_time" class="col-sm-2 control-label">
+              Start time
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @works_at.start_time %>">
+            </div>
+          </div>
+
+          <!-- Label and input for end_time -->
+          <div class="form-group">
+            <label for="end_time" class="col-sm-2 control-label">
+              End time
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="end_time" name="end_time" placeholder="End time" class="form-control" value="<%= @works_at.end_time %>">
+            </div>
+          </div>
+
+          <!-- Label and input for day_of_week -->
+          <div class="form-group">
+            <label for="day_of_week" class="col-sm-2 control-label">
+              Day of week
+            </label>
+            <div class="col-sm-10">
+              <input type="text" id="day_of_week" name="day_of_week" placeholder="Day of week" class="form-control" value="<%= @works_at.day_of_week %>">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <input type="submit" value="Create Works At" class="btn btn-success">
+              or
+              <a href="/works_ats">Cancel</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- End responsive panel example -->

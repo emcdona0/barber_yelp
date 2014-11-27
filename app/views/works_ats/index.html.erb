@@ -1,0 +1,152 @@
+<div class="page-header">
+  <h1>
+    Works ats
+    <a href="/works_ats/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+  </h1>
+</div>
+
+<!-- Simple table layout example -->
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Barbershop</th>
+          <th>Barber</th>
+          <th>Start time</th>
+          <th>End time</th>
+          <th>Day of week</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @works_ats.each do |works_at| %>
+          <tr>
+            <td><%= works_at.barbershop_id %></td>
+            <td><%= works_at.barber_id %></td>
+            <td><%= works_at.start_time %></td>
+            <td><%= works_at.end_time %></td>
+            <td><%= works_at.day_of_week %></td>
+            <td>
+              <a href="/works_ats/<%= works_at.id %>" class="btn btn-primary">
+                <i class="fa fa-search-plus"></i>
+              </a>
+            </td>
+            <td>
+              <a href="/works_ats/<%= works_at.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a>
+            </td>
+            <td>
+              <a href="/delete_works_at/<%= works_at.id %>" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </a>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- End simple table layout example -->
+
+<!-- Responsive, Isotope-based layout example -->
+
+<div class="row">
+  <div class="col-xs-12">
+    <input type="text" id="quicksearch" placeholder="Search Works ats (start typing)" class="form-control">
+  </div>
+</div>
+
+<hr>
+
+<div class="row isotope-container">
+<% @works_ats.each do |works_at| %>
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Works At #<%= works_at.id %></h3>
+      </div>
+      <div class="panel-body">
+        <dl>
+          <dt>Barbershop</dt>
+          <dd><%= works_at.barbershop_id %></dd>
+
+          <dt>Barber</dt>
+          <dd><%= works_at.barber_id %></dd>
+
+          <dt>Start time</dt>
+          <dd><%= works_at.start_time %></dd>
+
+          <dt>End time</dt>
+          <dd><%= works_at.end_time %></dd>
+
+          <dt>Day of week</dt>
+          <dd><%= works_at.day_of_week %></dd>
+
+        </dl>
+        <div class="btn-group btn-group-justified">
+          <a href="/works_ats/<%= works_at.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+
+          <a href="/works_ats/<%= works_at.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+
+          <a href="/delete_works_at/<%= works_at.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+
+<!-- JavaScript for Isotope layout and quicksearch -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
+<script>
+  $(function() {
+    // quick search regex
+    var qsRegex;
+
+    // init Isotope
+    var $container = $('.isotope-container').isotope({
+      itemSelector: '.isotope-item',
+      layoutMode: 'masonry',
+      filter: function() {
+        return qsRegex ? $(this).text().match( qsRegex ) : true;
+      }
+    });
+
+    // use value of search field to filter
+    var $quicksearch = $('#quicksearch').keyup( debounce( function() {
+      qsRegex = new RegExp( $quicksearch.val(), 'gi' );
+      $container.isotope();
+    }, 200 ) );
+
+  });
+
+  // debounce so filtering doesn't happen every millisecond
+  function debounce( fn, threshold ) {
+    var timeout;
+    return function debounced() {
+      if ( timeout ) {
+        clearTimeout( timeout );
+      }
+      function delayed() {
+        fn();
+        timeout = null;
+      }
+      timeout = setTimeout( delayed, threshold || 100 );
+    }
+  }
+</script>
+
+<!-- End responsive, Isotope-based layout example -->
