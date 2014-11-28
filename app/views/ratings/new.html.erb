@@ -24,7 +24,8 @@
           Barber
         </label>
         <div class="col-sm-10">
-          <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @rating.barber_id %>">
+         <!--  <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @rating.barber_id %>"> -->
+         <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
         </div>
       </div>
 
@@ -34,7 +35,9 @@
           User
         </label>
         <div class="col-sm-10">
-          <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @rating.user_id %>">
+          <!-- <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @rating.user_id %>"> -->
+          <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control" ) %>
+
         </div>
       </div>
 
@@ -44,7 +47,14 @@
           Rating
         </label>
         <div class="col-sm-10">
-          <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @rating.rating %>">
+          <!-- <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @rating.rating %>"> -->
+           <select name="rating">
+            <option value="5">5</option>
+            <option value="4">4</option>
+            <option value="3">3</option>
+            <option value="2">2</option>
+            <option value="1">1</option>
+          </select>
         </div>
       </div>
 

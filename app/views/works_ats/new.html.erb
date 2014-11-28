@@ -24,7 +24,8 @@
           Barbershop
         </label>
         <div class="col-sm-10">
-          <input type="text" id="barbershop_id" name="barbershop_id" placeholder="Barbershop" class="form-control" value="<%= @works_at.barbershop_id %>">
+        <%= select_tag(:barbershop_id, options_from_collection_for_select(Barbershop.all, :id, :name), :class => "form-control" ) %>
+        <!--   <input type="text" id="barbershop_id" name="barbershop_id" placeholder="Barbershop" class="form-control" value="<%= @works_at.barbershop_id %>"> -->
         </div>
       </div>
 
@@ -34,7 +35,8 @@
           Barber
         </label>
         <div class="col-sm-10">
-          <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @works_at.barber_id %>">
+        <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
+          <!-- <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @works_at.barber_id %>"> -->
         </div>
       </div>
 
@@ -44,7 +46,28 @@
           Start time
         </label>
         <div class="col-sm-10">
-          <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @works_at.start_time %>">
+          <!-- <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @works_at.start_time %>"> -->
+          <select name="start_time">
+            <option value="">--Select--</option>
+            <option value="05:00">05:00 AM</option>
+            <option value="06:00">06:00 AM</option>
+            <option value="07:00">07:00 AM</option>
+            <option value="08:00">08:00 AM</option>
+            <option value="09:00">09:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">01:00 PM</option>
+            <option value="14:00">02:00 PM</option>
+            <option value="15:00">03:00 PM</option>
+            <option value="16:00">04:00 PM</option>
+            <option value="17:00">05:00 PM</option>
+            <option value="18:00">06:00 PM</option>
+            <option value="19:00">07:00 PM</option>
+            <option value="20:00">08:00 PM</option>
+            <option value="21:00">09:00 PM</option>
+            <option value="22:00">10:00 PM</option>
+          </select>
         </div>
       </div>
 
@@ -54,8 +77,29 @@
           End time
         </label>
         <div class="col-sm-10">
-          <input type="text" id="end_time" name="end_time" placeholder="End time" class="form-control" value="<%= @works_at.end_time %>">
-        </div>
+          <!-- <input type="text" id="end_time" name="end_time" placeholder="End time" class="form-control" value="<%= @works_at.end_time %>"> -->
+          <select name="end_time">
+            <option value="">--Select--</option>
+            <option value="05:00">05:00 AM</option>
+            <option value="06:00">06:00 AM</option>
+            <option value="07:00">07:00 AM</option>
+            <option value="08:00">08:00 AM</option>
+            <option value="09:00">09:00 AM</option>
+            <option value="10:00">10:00 AM</option>
+            <option value="11:00">11:00 AM</option>
+            <option value="12:00">12:00 PM</option>
+            <option value="13:00">01:00 PM</option>
+            <option value="14:00">02:00 PM</option>
+            <option value="15:00">03:00 PM</option>
+            <option value="16:00">04:00 PM</option>
+            <option value="17:00">05:00 PM</option>
+            <option value="18:00">06:00 PM</option>
+            <option value="19:00">07:00 PM</option>
+            <option value="20:00">08:00 PM</option>
+            <option value="21:00">09:00 PM</option>
+            <option value="22:00">10:00 PM</option>
+          </select>
+          </div>
       </div>
 
       <!-- Label and input for day_of_week -->
@@ -64,7 +108,17 @@
           Day of week
         </label>
         <div class="col-sm-10">
-          <input type="text" id="day_of_week" name="day_of_week" placeholder="Day of week" class="form-control" value="<%= @works_at.day_of_week %>">
+          <!-- <input type="text" id="day_of_week" name="day_of_week" placeholder="Day of week" class="form-control" value="<%= @works_at.day_of_week %>"> -->
+          <select name="day_of_week">
+            <option value="">--Select--</option>
+            <option value="Sunday">Sunday</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+          </select>
         </div>
       </div>
 

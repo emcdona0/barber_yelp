@@ -26,8 +26,8 @@
       <tbody>
         <% @works_ats.each do |works_at| %>
           <tr>
-            <td><%= works_at.barbershop_id %></td>
-            <td><%= works_at.barber_id %></td>
+            <td><%= works_at.barbershop.name %></td>
+            <td><%= works_at.barber.username %></td>
             <td><%= works_at.start_time %></td>
             <td><%= works_at.end_time %></td>
             <td><%= works_at.day_of_week %></td>
@@ -75,10 +75,10 @@
       <div class="panel-body">
         <dl>
           <dt>Barbershop</dt>
-          <dd><%= works_at.barbershop_id %></dd>
+          <dd><%= works_at.barbershop.name %></dd>
 
           <dt>Barber</dt>
-          <dd><%= works_at.barber_id %></dd>
+          <dd><%= works_at.barber.username %></dd>
 
           <dt>Start time</dt>
           <dd><%= works_at.start_time %></dd>

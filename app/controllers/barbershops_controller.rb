@@ -1,3 +1,6 @@
+require 'open-uri'
+require 'json'
+
 class BarbershopsController < ApplicationController
   def index
     @barbershops = Barbershop.all
@@ -5,6 +8,13 @@ class BarbershopsController < ApplicationController
 
   def show
     @barbershop = Barbershop.find(params[:id])
+    @url_safe_address = URI.encode(@barbershop.address)
+    @url_of_data = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_address}"
+    @raw_data = open(@url_of_data).read
+    @parsed_data = JSON.parse(@raw_data)
+
+    @latitude = @parsed_data["results"][0]["geometry"]["location"]["lat"]
+    @longitude = @parsed_data["results"][0]["geometry"]["location"]["lng"]
   end
 
   def new

@@ -25,8 +25,8 @@
       <tbody>
         <% @ratings.each do |rating| %>
           <tr>
-            <td><%= rating.barber_id %></td>
-            <td><%= rating.user_id %></td>
+            <td><%= rating.barber.username %></td>
+            <td><%= rating.user.username %></td>
             <td><%= rating.rating %></td>
             <td><%= rating.comment %></td>
             <td>
@@ -73,10 +73,10 @@
       <div class="panel-body">
         <dl>
           <dt>Barber</dt>
-          <dd><%= rating.barber_id %></dd>
+          <dd><%= rating.barber.username %></dd>
 
           <dt>User</dt>
-          <dd><%= rating.user_id %></dd>
+          <dd><%= rating.user.username %></dd>
 
           <dt>Rating</dt>
           <dd><%= rating.rating %></dd>

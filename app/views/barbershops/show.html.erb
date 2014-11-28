@@ -1,25 +1,57 @@
 <!-- Simple full-width example-->
 
 <div class="page-header">
-  <h1>Barbershop #<%= @barbershop.id %></h1>
+  <!-- <h1>Barbershop #<%= @barbershop.name %></h1> -->
+  <h1><%= @barbershop.name %></h1>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Name</dt>
-      <dd><%= @barbershop.name %></dd>
+      <!-- <dt>Name</dt>
+      <dd><%= @barbershop.name %></dd> -->
 
       <dt>Address</dt>
       <dd><%= @barbershop.address %></dd>
 
       <dt>Hood</dt>
-      <dd><%= @barbershop.hood_id %></dd>
+      <dd><%= @barbershop.hood.name %></dd>
 
       <dt>Telephone</dt>
       <dd><%= @barbershop.telephone %></dd>
 
       <dt></dt>
+      <dt>Map</dt>
+      <dd>
+        <!-- Code for Google Map -->
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+        <script>
+          var map;
+          function initialize() {
+
+            var myLatlng = new google.maps.LatLng(<%= @latitude %>, <%= @longitude %>);
+
+            var mapOptions = {
+              zoom: 15,
+              center: myLatlng
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+
+            var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: '<%= @barbershop.name %>'
+            });
+          }
+
+          google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+        <div id="map-canvas" style="height: 400px"></div>
+      </dd>
+
       <dd>
         <div class="btn-group">
           <a href="/barbershops" class="btn btn-primary">
