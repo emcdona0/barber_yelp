@@ -6,7 +6,9 @@
 <div class="page-header">
   <h1>
     Barbers
+    <% if current_user.admin == true %>
     <a href="/barbers/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+    <% end %>
   </h1>
 </div>
 
@@ -20,7 +22,9 @@
           <th>Username</th>
           <th>First name</th>
           <th>Last name</th>
+          <% if current_user.admin == true %>
           <th>Telephone</th>
+          <% end %>
           <th>Average rating</th>
           <th></th>
           <th></th>
@@ -34,23 +38,29 @@
             <td><%= barber.username %></td>
             <td><%= barber.first_name %></td>
             <td><%= barber.last_name %></td>
+            <% if current_user.admin == true %>
             <td><%= barber.telephone %></td>
+            <% end %>
             <td><%= barber.average_rating %></td>
             <td>
               <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
               </a>
             </td>
+            <% if current_user.admin == true %>
             <td>
               <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
             </td>
+             <% end %>
+               <% if current_user.admin == true %>
             <td>
               <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
               </a>
             </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -71,7 +81,7 @@
 <hr>
 
 <div class="row isotope-container">
-<% @barbers.each do |barber| %>
+  <% @barbers.each do |barber| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -99,19 +109,21 @@
           <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-
+          <% if current_user.admin == true %>
           <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
-
+          <% end %>
+          <% if current_user.admin == true %>
           <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->
