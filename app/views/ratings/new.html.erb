@@ -12,7 +12,7 @@
 <!-- Simple full-width example-->
 
 <div class="page-header">
-  <h1>Add Rating</h1>
+  <h1>Add Rating </h1> <%= current_user.username %>
 </div>
 
 <div class="row">
@@ -31,12 +31,13 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="col-sm-2 control-label">
+        <!-- <label for="user_id" class="col-sm-2 control-label">
           User
-        </label>
+        </label> -->
         <div class="col-sm-10">
           <!-- <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @rating.user_id %>"> -->
-          <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control" ) %>
+          <%#= select_tag(:current, options_from_collection_for_select(User.all, :id, :username), :class => "form-control" ) %>
+          <input type="hidden" placeholder="user_id" name="user_id" class="form-control" value=" <%= current_user.id %>">
 
         </div>
       </div>
@@ -48,7 +49,7 @@
         </label>
         <div class="col-sm-10">
           <!-- <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @rating.rating %>"> -->
-           <select name="rating">
+           <select name="rating" id="rating" placeholder="<%= @rating.rating %>" class="form-control">
             <option value="5">5</option>
             <option value="4">4</option>
             <option value="3">3</option>
@@ -97,19 +98,12 @@
               Barber
             </label>
             <div class="col-sm-10">
-              <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @rating.barber_id %>">
+              <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
             </div>
           </div>
 
-          <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="col-sm-2 control-label">
-              User
-            </label>
-            <div class="col-sm-10">
-              <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @rating.user_id %>">
-            </div>
-          </div>
+          <!-- Hidden input for current_user.id -->
+           <input type="hidden" placeholder="user_id" name="user_id" class="form-control" value=" <%= current_user.id %>">
 
           <!-- Label and input for rating -->
           <div class="form-group">
@@ -117,7 +111,13 @@
               Rating
             </label>
             <div class="col-sm-10">
-              <input type="text" id="rating" name="rating" placeholder="Rating" class="form-control" value="<%= @rating.rating %>">
+              <select name="rating" id="rating" placeholder="<%= @rating.rating %>" class="form-control">
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+              </select>
             </div>
           </div>
 

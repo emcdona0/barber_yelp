@@ -8,10 +8,10 @@
   <div class="col-md-12">
     <dl class="dl-horizontal">
       <dt>Barber</dt>
-      <dd><%= @rating.barber_id %></dd>
+      <dd><%= @rating.barber.username %></dd>
 
       <dt>User</dt>
-      <dd><%= @rating.user_id %></dd>
+      <dd><%= @rating.user.username %></dd>
 
       <dt>Rating</dt>
       <dd><%= @rating.rating %></dd>
@@ -55,10 +55,10 @@
           <div class="col-md-12">
             <dl class="dl-horizontal">
               <dt>Barber</dt>
-              <dd><%= @rating.barber_id %></dd>
+              <dd><%= @rating.barber.username %></dd>
 
               <dt>User</dt>
-              <dd><%= @rating.user_id %></dd>
+              <dd><%= @rating.user.username %></dd>
 
               <dt>Rating</dt>
               <dd><%= @rating.rating %></dd>
