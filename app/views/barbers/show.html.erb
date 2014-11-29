@@ -28,14 +28,17 @@
           <a href="/barbers" class="btn btn-primary">
             <i class="fa fa-chevron-left"></i>
           </a>
-
+          <% if current_user.admin == true %>
           <a href="/barbers/<%= @barber.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
+          <% end %>
 
+          <% if current_user.admin == true %>
           <a href="/delete_barber/<%= @barber.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </dd>
     </dl>
@@ -78,12 +81,16 @@
                 <i class="fa fa-chevron-left"></i>
               </a>
 
+              <% if current_user.admin == true %>
               <a href="/barbers/<%= @barber.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
+              <% end %>
 
+              <% if current_user.admin == true %>
               <a href="/delete_barber/<%= @barber.id %>" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
+                <% end %>
               </a>
             </div>
           </div>
