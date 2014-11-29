@@ -12,7 +12,7 @@
 
       <dt>First name</dt>
       <dd><%= @user.first_name %></dd>
-
+      <% if current_user.admin == true %>
       <dt>Last name</dt>
       <dd><%= @user.last_name %></dd>
 
@@ -22,8 +22,10 @@
       <dt>Telephone</dt>
       <dd><%= @user.telephone %></dd>
 
-       <dt>Admin</dt>
-        <dd><%= @user.admin %></dd>
+      <dt>Admin</dt>
+      <dd><%= @user.admin %></dd>
+
+      <% end %>
 
       <dt></dt>
       <dd>
@@ -31,7 +33,7 @@
           <a href="/users" class="btn btn-primary">
             <i class="fa fa-chevron-left"></i>
           </a>
-
+          <% if current_user.admin == true %>
           <a href="/users/<%= @user.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
@@ -39,6 +41,7 @@
           <a href="/delete_user/<%= @user.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </dd>
     </dl>
@@ -66,6 +69,7 @@
               <dt>First name</dt>
               <dd><%= @user.first_name %></dd>
 
+              <% if current_user.admin == true %>
               <dt>Last name</dt>
               <dd><%= @user.last_name %></dd>
 
@@ -78,12 +82,15 @@
               <dt>Admin</dt>
               <dd><%= @user.admin %></dd>
 
+              <% end %>
+
             </dl>
             <div class="btn-group btn-group-justified">
               <a href="/users" class="btn btn-primary">
                 <i class="fa fa-chevron-left"></i>
               </a>
 
+              <% if current_user.admin == true %>
               <a href="/users/<%= @user.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
@@ -91,6 +98,7 @@
               <a href="/delete_user/<%= @user.id %>" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
               </a>
+              <% end %>
             </div>
           </div>
         </div>
