@@ -30,18 +30,28 @@
             <td><%= favorite.barbershop.name %></td>
             <td><%= favorite.notes %></td>
             <td>
+
               <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
               </a>
             </td>
             <td>
-              <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
+
+              <% if current_user == favorite.user %>
+           <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
+
+          <% end %>
+
               </a>
             </td>
             <td>
-              <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger">
+              <% if current_user == favorite.user %>
+          <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
+
+          <% end %>
+
               </a>
             </td>
           </tr>
@@ -90,13 +100,19 @@
             <i class="fa fa-search-plus"></i>
           </a>
 
+           <% if current_user == favorite.user %>
           <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
+          <% end %>
 
+          <% if current_user == favorite.user %>
           <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
+
+
         </div>
       </div>
     </div>
