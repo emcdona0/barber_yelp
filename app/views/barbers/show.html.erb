@@ -13,11 +13,13 @@
       <dt>First name</dt>
       <dd><%= @barber.first_name %></dd>
 
+<% if current_user.admin == true %>
       <dt>Last name</dt>
       <dd><%= @barber.last_name %></dd>
 
       <dt>Telephone</dt>
       <dd><%= @barber.telephone %></dd>
+      <% end %>
 
       <dt>Average rating</dt>
       <dd><%= @barber.average_rating %></dd>
@@ -65,12 +67,13 @@
 
               <dt>First name</dt>
               <dd><%= @barber.first_name %></dd>
-
+<% if current_user.admin == true %>
               <dt>Last name</dt>
               <dd><%= @barber.last_name %></dd>
 
               <dt>Telephone</dt>
               <dd><%= @barber.telephone %></dd>
+              <% end %>
 
               <dt>Average rating</dt>
               <dd><%= @barber.average_rating %></dd>

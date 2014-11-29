@@ -37,8 +37,8 @@
           <tr>
             <td><%= barber.username %></td>
             <td><%= barber.first_name %></td>
-            <td><%= barber.last_name %></td>
             <% if current_user.admin == true %>
+            <td><%= barber.last_name %></td>
             <td><%= barber.telephone %></td>
             <% end %>
             <td><%= barber.average_rating %></td>
@@ -94,12 +94,13 @@
 
           <dt>First name</dt>
           <dd><%= barber.first_name %></dd>
-
+<% if current_user.admin == true %>
           <dt>Last name</dt>
           <dd><%= barber.last_name %></dd>
 
           <dt>Telephone</dt>
           <dd><%= barber.telephone %></dd>
+          <% end %>
 
           <dt>Average rating</dt>
           <dd><%= barber.average_rating %></dd>
