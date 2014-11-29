@@ -35,7 +35,6 @@
           Barber
         </label>
         <div class="col-sm-10">
-          <!-- <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @favorite.barber_id %>"> -->
           <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
 
         </div>
@@ -47,11 +46,11 @@
           Barbershop
         </label>
         <div class="col-sm-10">
-        <!--   <input type="text" id="barbershop_id" name="barbershop_id" placeholder="Barbershop" class="form-control" value="<%= @favorite.barbershop_id %>"> -->
          <%= select_tag(:barbershop_id, options_from_collection_for_select(Barbershop.all, :id, :name), :class => "form-control" ) %>
-
         </div>
       </div>
+
+
 
       <!-- Label and input for notes -->
       <div class="form-group">

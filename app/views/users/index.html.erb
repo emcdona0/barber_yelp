@@ -15,8 +15,8 @@
           <th>Username</th>
           <th>First name</th>
           <th>Last name</th>
+           <th>Email</th>
           <th>Telephone</th>
-          <th></th>
           <th></th>
           <th></th>
         </tr>
@@ -28,6 +28,7 @@
             <td><%= user.username %></td>
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
             <td><%= user.telephone %></td>
             <td>
               <a href="/users/<%= user.id %>" class="btn btn-primary">
@@ -80,6 +81,9 @@
 
           <dt>Last name</dt>
           <dd><%= user.last_name %></dd>
+
+          <dt>Email</dt>
+          <dd><%= user.email %></dd>
 
           <dt>Telephone</dt>
           <dd><%= user.telephone %></dd>
