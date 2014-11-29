@@ -1,7 +1,9 @@
 <div class="page-header">
   <h1>
     Barbershops
+<% if current_user.admin == true %>
     <a href="/barbershops/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+    <% end %>
   </h1>
 </div>
 
@@ -14,7 +16,7 @@
         <tr>
           <th>Name</th>
           <th>Address</th>
-          <th>Hood</th>
+          <th>Neighborhood</th>
           <th>Telephone</th>
           <th></th>
           <th></th>
@@ -27,13 +29,14 @@
           <tr>
             <td><%= barbershop.name %></td>
             <td><%= barbershop.address %></td>
-            <td><%= barbershop.hood_id %></td>
+            <td><%= barbershop.hood.name %></td>
             <td><%= barbershop.telephone %></td>
             <td>
               <a href="/barbershops/<%= barbershop.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
               </a>
             </td>
+            <% if current_user.admin == true %>
             <td>
               <a href="/barbershops/<%= barbershop.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
@@ -44,6 +47,7 @@
                 <i class="fa fa-trash-o"></i>
               </a>
             </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
@@ -79,7 +83,7 @@
           <dd><%= barbershop.address %></dd>
 
           <dt>Hood</dt>
-          <dd><%= barbershop.hood_id %></dd>
+          <dd><%= barbershop.hood.name %></dd>
 
           <dt>Telephone</dt>
           <dd><%= barbershop.telephone %></dd>
@@ -89,7 +93,7 @@
           <a href="/barbershops/<%= barbershop.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-
+<% if current_user.admin == true %>
           <a href="/barbershops/<%= barbershop.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
@@ -97,6 +101,7 @@
           <a href="/delete_barbershop/<%= barbershop.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </div>
     </div>
