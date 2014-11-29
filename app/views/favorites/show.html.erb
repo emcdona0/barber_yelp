@@ -26,13 +26,19 @@
             <i class="fa fa-chevron-left"></i>
           </a>
 
+          <% if current_user == @favorite.user %>
           <a href="/favorites/<%= @favorite.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
+          <% end %>
 
+
+          <% if current_user == @favorite.user %>
           <a href="/delete_favorite/<%= @favorite.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
+
         </div>
       </dd>
     </dl>
@@ -72,13 +78,17 @@
                 <i class="fa fa-chevron-left"></i>
               </a>
 
-              <a href="/favorites/<%= @favorite.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
+              <% if current_user == @favorite.user %>
+          <a href="/favorites/<%= @favorite.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+          <% end %>
 
-              <a href="/delete_favorite/<%= @favorite.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-              </a>
+              <% if current_user == @favorite.user %>
+          <a href="/delete_favorite/<%= @favorite.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+          <% end %>
             </div>
           </div>
         </div>

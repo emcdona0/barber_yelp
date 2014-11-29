@@ -19,16 +19,10 @@
 <div class="row">
   <div class="col-md-12">
     <form action="/update_favorite/<%= @favorite.id %>" class="form-horizontal">
+
       <!-- Label and input for user_id -->
       <div class="form-group">
-
       <input type="hidden" placeholder="user_id" name="user_id" class="form-control" value=" <%= current_user.id %>">
-      <!-- <label for="user_id" class="col-sm-2 control-label">
-          User
-        </label>
-        <div class="col-sm-10"> -->
-          <%#= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control" ) %>
-       <!--  </div> -->
         </div>
 
       <!-- Label and input for barber_id -->
@@ -87,57 +81,52 @@
       </div>
       <div class="panel-body">
         <form action="/update_favorite/<%= @favorite.id %>" class="form-horizontal">
-          <!-- Label and input for user_id -->
-          <div class="form-group">
-            <label for="user_id" class="col-sm-2 control-label">
-              User
-            </label>
-            <div class="col-sm-10">
-              <%= select_tag(:user_id, options_from_collection_for_select(User.all, :id, :username), :class => "form-control" ) %>
-            </div>
-          </div>
+         <!-- Label and input for user_id -->
+         <div class="form-group">
+          <input type="hidden" placeholder="user_id" name="user_id" class="form-control" value=" <%= current_user.id %>">
+        </div>
 
-          <!-- Label and input for barber_id -->
-          <div class="form-group">
-            <label for="barber_id" class="col-sm-2 control-label">
-              Barber
-            </label>
-            <div class="col-sm-10">
-               <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
-            </div>
-          </div>
+        <!-- Label and input for barber_id -->
+        <div class="form-group">
+          <label for="barber_id" class="col-sm-2 control-label">
+            Barber
+          </label>
+          <div class="col-sm-10">
+           <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
+         </div>
+       </div>
 
-          <!-- Label and input for barbershop_id -->
-          <div class="form-group">
-            <label for="barbershop_id" class="col-sm-2 control-label">
-              Barbershop
-            </label>
-            <div class="col-sm-10">
-              <%= select_tag(:barbershop_id, options_from_collection_for_select(Barbershop.all, :id, :name), :class => "form-control" ) %>
-            </div>
-          </div>
-
-          <!-- Label and input for notes -->
-          <div class="form-group">
-            <label for="notes" class="col-sm-2 control-label">
-              Notes
-            </label>
-            <div class="col-sm-10">
-              <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @favorite.notes %></textarea>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <input type="submit" value="Update Favorite" class="btn btn-warning">
-              or
-              <a href="/favorites/<%= @favorite.id %>">Cancel</a>
-            </div>
-          </div>
-        </form>
+       <!-- Label and input for barbershop_id -->
+       <div class="form-group">
+        <label for="barbershop_id" class="col-sm-2 control-label">
+          Barbershop
+        </label>
+        <div class="col-sm-10">
+          <%= select_tag(:barbershop_id, options_from_collection_for_select(Barbershop.all, :id, :name), :class => "form-control" ) %>
+        </div>
       </div>
-    </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="col-sm-2 control-label">
+          Notes
+        </label>
+        <div class="col-sm-10">
+          <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @favorite.notes %></textarea>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <input type="submit" value="Update Favorite" class="btn btn-warning">
+          or
+          <a href="/favorites/<%= @favorite.id %>">Cancel</a>
+        </div>
+      </div>
+    </form>
   </div>
+</div>
+</div>
 </div>
 
 
