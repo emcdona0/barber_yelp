@@ -1,7 +1,9 @@
 <div class="page-header">
   <h1>
     Hoods
+    <% if current_user.admin == true %>
     <a href="/hoods/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+    <% end %>
   </h1>
 </div>
 
@@ -23,26 +25,30 @@
 
       <tbody>
         <% @hoods.each do |hood| %>
-          <tr>
-            <td><%= hood.name %></td>
-            <td><%= hood.city %></td>
-            <td><%= hood.state %></td>
-            <td>
-              <a href="/hoods/<%= hood.id %>" class="btn btn-primary">
-                <i class="fa fa-search-plus"></i>
-              </a>
-            </td>
-            <td>
-              <a href="/hoods/<%= hood.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-            </td>
-            <td>
-              <a href="/delete_hood/<%= hood.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            </td>
-          </tr>
+        <tr>
+          <td><%= hood.name %></td>
+          <td><%= hood.city %></td>
+          <td><%= hood.state %></td>
+          <td>
+            <a href="/hoods/<%= hood.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+          </td>
+          <% if current_user.admin == true %>
+          <td>
+            <a href="/hoods/<%= hood.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+          </td>
+          <% end %>
+          <% if current_user.admin == true %>
+          <td>
+            <a href="/delete_hood/<%= hood.id %>" class="btn btn-danger">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </td>
+          <% end %>
+        </tr>
         <% end %>
       </tbody>
     </table>
@@ -62,7 +68,7 @@
 <hr>
 
 <div class="row isotope-container">
-<% @hoods.each do |hood| %>
+  <% @hoods.each do |hood| %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
@@ -84,19 +90,21 @@
           <a href="/hoods/<%= hood.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-
+          <% if current_user.admin == true %>
           <a href="/hoods/<%= hood.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
-
+          <% end %>
+          <% if current_user.admin == true %>
           <a href="/delete_hood/<%= hood.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
+          <% end %>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+  <% end %>
 </div>
 
 <!-- JavaScript for Isotope layout and quicksearch -->
