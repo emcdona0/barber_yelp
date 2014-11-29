@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     @user.last_name = params[:last_name]
     @user.email = params[:email]
     @user.telephone = params[:telephone]
+    @user.admin = params[:admin]
 
     if @user.save
       redirect_to "/users", :notice => "User created successfully."
@@ -38,6 +39,7 @@ class UsersController < ApplicationController
     @user.last_name = params[:last_name]
     @user.email = params[:email]
     @user.telephone = params[:telephone]
+    @user.admin = params[:admin]
 
     if @user.save
       redirect_to "/users", :notice => "User updated successfully."

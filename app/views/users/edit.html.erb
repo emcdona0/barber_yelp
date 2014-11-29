@@ -69,6 +69,20 @@
         </div>
       </div>
 
+      <!-- Label and input for admin -->
+      <div class="form-group">
+        <label for="admin" class="col-sm-2 control-label">
+          Admin
+        </label>
+        <div class="col-sm-10">
+          <!-- <input type="text" id="admin" name="admin" placeholder="Admin" class="form-control" value="<%= @user.admin %>"> -->
+          <select  id="admin" name="admin" class="form-control" value="<%= @user.admin %>" >
+            <option value="true">True</option>
+            <option value="false">False</option>
+            </select>
+        </div>
+      </div>
+
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <input type="submit" value="Update User" class="btn btn-warning">
@@ -139,6 +153,19 @@
             </label>
             <div class="col-sm-10">
               <input type="text" id="telephone" name="telephone" placeholder="Telephone" class="form-control" value="<%= @user.telephone %>">
+            </div>
+          </div>
+
+          <!-- Label and input for admin -->
+          <div class="form-group">
+            <label for="admin" class="col-sm-2 control-label">
+              Admin
+            </label>
+            <div class="col-sm-10">
+              <select  id="admin" name="admin" class="form-control" value="<%= @user.admin %>" >
+                <option value="true">True</option>
+                <option value="false">False</option>
+              </select>
             </div>
           </div>
 

@@ -38,7 +38,7 @@
         </label>
         <div class="col-sm-10">
          <!--  <input type="text" id="barber_id" name="barber_id" placeholder="Barber" class="form-control" value="<%= @works_at.barber_id %>"> -->
-          <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :name), :class => "form-control" ) %>
+          <%= select_tag(:barber_id, options_from_collection_for_select(Barber.all, :id, :username), :class => "form-control" ) %>
         </div>
       </div>
 

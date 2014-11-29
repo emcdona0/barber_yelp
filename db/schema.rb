@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141129000644) do
+ActiveRecord::Schema.define(version: 20141129211035) do
 
   create_table "barbers", force: true do |t|
     t.string   "username"
@@ -65,17 +65,18 @@ ActiveRecord::Schema.define(version: 20141129000644) do
     t.string   "telephone"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "avatar_url"
+    t.boolean  "admin",                  default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
@@ -84,8 +85,8 @@ ActiveRecord::Schema.define(version: 20141129000644) do
   create_table "works_ats", force: true do |t|
     t.integer  "barbershop_id"
     t.integer  "barber_id"
-    t.float    "start_time"
-    t.float    "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.string   "day_of_week"
     t.datetime "created_at"
     t.datetime "updated_at"
