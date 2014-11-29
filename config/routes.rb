@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  devise_for :users
   root 'barbers#index'
 
   # Routes for the Works_at resource:
