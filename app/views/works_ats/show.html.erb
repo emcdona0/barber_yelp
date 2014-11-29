@@ -14,10 +14,11 @@
       <dd><%= @works_at.barber.username %></dd>
 
       <dt>Start time</dt>
-      <dd><%= @works_at.start_time %></dd>
+      <dd><%= @works_at.start_time.strftime('%l:%M %p') %></dd>
 
       <dt>End time</dt>
-      <dd><%= @works_at.end_time %></dd>
+      <dd><%= @works_at.end_time.strftime('%l:%M %p') %></dd>
+
 
       <dt>Day of week</dt>
       <dd><%= @works_at.day_of_week %></dd>
@@ -64,10 +65,10 @@
               <dd><%= @works_at.barber.username %></dd>
 
               <dt>Start time</dt>
-              <dd><%= @works_at.start_time %></dd>
+              <dd><%= @works_at.start_time.strftime('%l:%M %p') %></dd>
 
               <dt>End time</dt>
-              <dd><%= @works_at.end_time %></dd>
+              <dd><%= @works_at.end_time.strftime('%l:%M %p') %></dd>
 
               <dt>Day of week</dt>
               <dd><%= @works_at.day_of_week %></dd>

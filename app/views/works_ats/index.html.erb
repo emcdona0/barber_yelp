@@ -29,8 +29,8 @@
           <tr>
             <td><%= works_at.barbershop.name %></td>
             <td><%= works_at.barber.username %></td>
-            <td><%= works_at.start_time.strftime('%l:%M') %></td>
-            <td><%= works_at.end_time.strftime('%l:%M') %></td>
+            <td><%= works_at.start_time.strftime('%l:%M %p') %></td>
+            <td><%= works_at.end_time.strftime('%l:%M %p') %></td>
             <td><%= works_at.day_of_week %></td>
             <td>
               <a href="/works_ats/<%= works_at.id %>" class="btn btn-primary">
@@ -82,10 +82,10 @@
           <dd><%= works_at.barber.username %></dd>
 
           <dt>Start time</dt>
-          <dd><%= works_at.start_time %></dd>
+          <dd><%= works_at.start_time.strftime('%l:%M %p') %></dd>
 
           <dt>End time</dt>
-          <dd><%= works_at.end_time %></dd>
+          <dd><%= works_at.end_time.strftime('%l:%M %p') %></dd>
 
           <dt>Day of week</dt>
           <dd><%= works_at.day_of_week %></dd>
