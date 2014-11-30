@@ -5,7 +5,6 @@ class Barber < ActiveRecord::Base
   validates(:last_name, { :presence => true })
   validates(:telephone, { :presence => true })
 
-
   belongs_to :barbershop
   belongs_to :works_at
   belongs_to :rating
