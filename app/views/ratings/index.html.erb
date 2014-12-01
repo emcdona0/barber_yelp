@@ -36,7 +36,7 @@
             </td>
 
             <td>
-              <% if current_user == rating.user %>
+              <% if current_user == rating.user || current_user.admin == true %>
               <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
@@ -44,7 +44,7 @@
             </td>
 
             <td>
-            <% if current_user == rating.user %>
+            <% if current_user == rating.user || current_user.admin == true %>
               <a href="/delete_rating/<%= rating.id %>" class="btn btn-danger">
                 <i class="fa fa-trash-o"></i>
               </a>
@@ -95,13 +95,13 @@
           <a href="/ratings/<%= rating.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-          <% if current_user == rating.user %>
+          <% if current_user == rating.user || current_user.admin == true %>
           <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
           <% end %>
 
-          <% if current_user == rating.user %>
+          <% if current_user == rating.user || current_user.admin == true %>
           <a href="/delete_rating/<%= rating.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
             <% end %>
