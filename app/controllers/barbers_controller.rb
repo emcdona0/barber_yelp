@@ -18,6 +18,7 @@ class BarbersController < ApplicationController
     @barber.last_name = params[:last_name]
     @barber.telephone = params[:telephone]
     @barber.average_rating = params[:average_rating]
+    @barber.avatar_url = params[:avatar_url]
 
     if @barber.save
       redirect_to "/barbers", :notice => "Barber created successfully."
@@ -38,6 +39,7 @@ class BarbersController < ApplicationController
     @barber.last_name = params[:last_name]
     @barber.telephone = params[:telephone]
     @barber.average_rating = params[:average_rating]
+    @barber.avatar_url = params[:avatar_url]
 
     if @barber.save
       redirect_to "/barbers", :notice => "Barber updated successfully."

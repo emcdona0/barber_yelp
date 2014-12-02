@@ -191,14 +191,20 @@
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
-              <dt>Username</dt>
-              <dd><%= rating.user.username %></dd>
 
+      <div class="media">
+        <a class="media-left" href="#">
+          <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="80">
+        </a>
+    <div class="media-body">
+    <h4 class="media-heading"><%= rating.user.username %></h4>
               <dt>Rating</dt>
               <dd><%= rating.rating  %></dd>
 
               <dt>Comments</dt>
               <dd><%= rating.comment %></dd>
+    </div>
+    </div>
 
             </dl>
           </div>

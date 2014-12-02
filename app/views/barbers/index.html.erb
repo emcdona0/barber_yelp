@@ -19,6 +19,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+          <th> Avatar </th>
           <th>Username</th>
           <th>First name</th>
           <% if current_user.admin == true %>
@@ -35,16 +36,22 @@
       <tbody>
         <% @barbers.each do |barber| %>
           <tr>
-          <!-- <td>
-         <img src="<%#= barber.avatar_url %>" alt="" class="img-circle" width="80">
-         </td> -->
+          <td>
+         <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
+         </td>
             <td><%= barber.username %></td>
             <td><%= barber.first_name %></td>
             <% if current_user.admin == true %>
             <td><%= barber.last_name %></td>
             <td><%= barber.telephone %></td>
             <% end %>
+
+            <% if barber.ratings.average(:rating).present? %>
             <td><%= barber.ratings.average(:rating).round(1) %></td>
+            <% else %>
+            <td>No ratings yet</td>
+            <% end %>
+
             <td>
               <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
@@ -92,6 +99,7 @@
       </div>
       <div class="panel-body">
         <dl>
+          <dd>  <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80"></dd>
           <dt>Username</dt>
           <dd><%= barber.username %></dd>
 
@@ -106,7 +114,7 @@
           <% end %>
 
           <dt>Average rating</dt>
-          <dd><%= barber.average_rating %></dd>
+          <dd><%#= barber.average_rating %></dd>
 
         </dl>
         <div class="btn-group btn-group-justified">
