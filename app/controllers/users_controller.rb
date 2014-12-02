@@ -19,6 +19,7 @@ class UsersController < ApplicationController
     @user.email = params[:email]
     @user.telephone = params[:telephone]
     @user.admin = params[:admin]
+    @user.avatar_url = params[:avatar_url]
 
     if @user.save
       redirect_to "/users", :notice => "User created successfully."
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
     @user.email = params[:email]
     @user.telephone = params[:telephone]
     @user.admin = params[:admin]
+    @user.avatar_url = params[:avatar_url]
 
     if @user.save
       redirect_to "/users", :notice => "User updated successfully."

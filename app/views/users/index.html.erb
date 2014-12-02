@@ -14,6 +14,7 @@
     <table class="table table-hover">
       <thead>
         <tr>
+        <th> Avatar </th>
           <th>Username</th>
           <th>First name</th>
           <% if current_user.admin == true %>
@@ -29,19 +30,26 @@
       <tbody>
         <% @users.each do |user| %>
         <tr>
+          <td>
+         <img src="<%= user.avatar_url %>" alt="" class="img-circle" width="80">
+          <%#= image_tag(user.avatar_url), class="media-left" %>
+          </td>
           <td><%= user.username %></td>
           <td><%= user.first_name %></td>
+
           <% if current_user.admin == true %>
           <td><%= user.last_name %></td>
           <td><%= user.email %></td>
           <td><%= user.telephone %></td>
           <td><%= user.admin %></td>
           <% end %>
+
           <td>
             <a href="/users/<%= user.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
             </a>
           </td>
+
           <% if current_user.admin == true %>
           <td>
             <a href="/users/<%= user.id %>/edit" class="btn btn-warning">
@@ -49,6 +57,7 @@
             </a>
           </td>
           <% end %>
+
           <% if current_user.admin == true %>
           <td>
             <a href="/delete_user/<%= user.id %>" class="btn btn-danger">
@@ -56,6 +65,7 @@
             </a>
           </td>
           <% end %>
+
         </tr>
         <% end %>
       </tbody>
@@ -84,6 +94,8 @@
       </div>
       <div class="panel-body">
         <dl>
+
+         <dd><img src="<%= user.avatar_url %>" alt="" class="img-circle" width="80"></dd>
           <dt>Username</dt>
           <dd><%= user.username %></dd>
 

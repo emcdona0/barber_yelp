@@ -21,8 +21,8 @@
         <tr>
           <th>Username</th>
           <th>First name</th>
-          <th>Last name</th>
           <% if current_user.admin == true %>
+          <th>Last name</th>
           <th>Telephone</th>
           <% end %>
           <th>Average rating</th>
@@ -35,13 +35,16 @@
       <tbody>
         <% @barbers.each do |barber| %>
           <tr>
+          <!-- <td>
+         <img src="<%#= barber.avatar_url %>" alt="" class="img-circle" width="80">
+         </td> -->
             <td><%= barber.username %></td>
             <td><%= barber.first_name %></td>
             <% if current_user.admin == true %>
             <td><%= barber.last_name %></td>
             <td><%= barber.telephone %></td>
             <% end %>
-            <td><%= barber.average_rating %></td>
+            <td><%= barber.ratings.average(:rating).round(1) %></td>
             <td>
               <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
