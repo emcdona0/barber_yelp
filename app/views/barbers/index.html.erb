@@ -1,8 +1,3 @@
-
-<!-- <h1>
-<%= current_user.username %>
-</h1> -->
-
 <div class="page-header">
   <h1>
     Barbers
@@ -21,6 +16,7 @@
         <tr>
           <th> Avatar </th>
           <th>Username</th>
+          <th>Barbershop</th>
           <th>First name</th>
           <% if current_user.admin == true %>
           <th>Last name</th>
@@ -34,48 +30,56 @@
       </thead>
 
       <tbody>
+
         <% @barbers.each do |barber| %>
-          <tr>
-          <td>
-         <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
-         </td>
-            <td><%= barber.username %></td>
-            <td><%= barber.first_name %></td>
-            <% if current_user.admin == true %>
-            <td><%= barber.last_name %></td>
-            <td><%= barber.telephone %></td>
-            <% end %>
+        <tr>
+          <th>
+           <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
+         </th>
+         <td><%= barber.username %></td>
+         <td>
+         <% barber.barbershops.uniq.each do |barbershop| %>
+          <%= barbershop.name %>
+          </td>
+          <% end %>
 
-            <% if barber.ratings.average(:rating).present? %>
-            <td><%= barber.ratings.average(:rating).round(1) %></td>
-            <% else %>
-            <td>No ratings yet</td>
-            <% end %>
+         <td><%= barber.first_name %></td>
+         <% if current_user.admin == true %>
+         <td><%= barber.last_name %></td>
+         <td><%= barber.telephone %></td>
+         <% end %>
 
-            <td>
-              <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
-                <i class="fa fa-search-plus"></i>
-              </a>
-            </td>
-            <% if current_user.admin == true %>
-            <td>
-              <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-            </td>
-             <% end %>
-               <% if current_user.admin == true %>
-            <td>
-              <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-              </a>
-            </td>
-            <% end %>
-          </tr>
+         <% if barber.ratings.average(:rating).present? %>
+         <td><%= barber.ratings.average(:rating).round(1) %></td>
+         <% else %>
+         <td>No ratings yet</td>
+         <% end %>
+
+
+         <td>
+          <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+        </td>
+        <% if current_user.admin == true %>
+        <td>
+          <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
         <% end %>
-      </tbody>
-    </table>
-  </div>
+        <% if current_user.admin == true %>
+        <td>
+          <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 </div>
 
 <!-- End simple table layout example -->
@@ -103,9 +107,48 @@
           <dt>Username</dt>
           <dd><%= barber.username %></dd>
 
+       <dt>Barbershop</dt>
+          <dd>
+
+          <% WorksAt.where(barber_id: barber.id).uniq.each  do |gig| %>
+          <!-- Add HTML table here -->
+
+          <% if WorksAt.where(barber_id: barber.id).count > 1 %>
+          <tr>
+          <%= gig.barbershop.name.first %>
+            </tr>
+
+            <% else %>
+          <%= gig.barbershop.name %>
+
+            <% end %>
+
+            <% end %>
+          </dd>
+
+
+   <dt>Barbershop</dt>
+
+             <dd>
+
+          <% WorksAt.where(barber_id: barber.id).each  do |gig| %>
+          <!-- Add HTML table here -->
+
+
+          <tr>
+          <%= gig.barbershop.name.first %>
+            </tr>
+
+
+
+            <% end %>
+          </dd>
+
+
+
           <dt>First name</dt>
           <dd><%= barber.first_name %></dd>
-<% if current_user.admin == true %>
+          <% if current_user.admin == true %>
           <dt>Last name</dt>
           <dd><%= barber.last_name %></dd>
 
@@ -114,7 +157,12 @@
           <% end %>
 
           <dt>Average rating</dt>
-          <dd><%#= barber.average_rating %></dd>
+
+          <% if barber.ratings.average(:rating).present? %>
+          <dd><%= barber.ratings.average(:rating).round(1) %></dd>
+          <% else %>
+          <dd>No ratings yet</dd>
+          <% end %>
 
         </dl>
         <div class="btn-group btn-group-justified">
@@ -137,6 +185,8 @@
   </div>
   <% end %>
 </div>
+
+
 
 <!-- JavaScript for Isotope layout and quicksearch -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>

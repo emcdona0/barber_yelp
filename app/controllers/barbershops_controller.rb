@@ -8,13 +8,6 @@ class BarbershopsController < ApplicationController
 
   def show
     @barbershop = Barbershop.find(params[:id])
-    @url_safe_address = URI.encode(@barbershop.address)
-    @url_of_data = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_address}"
-    @raw_data = open(@url_of_data).read
-    @parsed_data = JSON.parse(@raw_data)
-
-    @latitude = @parsed_data["results"][0]["geometry"]["location"]["lat"]
-    @longitude = @parsed_data["results"][0]["geometry"]["location"]["lng"]
   end
 
   def new
@@ -27,6 +20,14 @@ class BarbershopsController < ApplicationController
     @barbershop.address = params[:address]
     @barbershop.hood_id = params[:hood_id]
     @barbershop.telephone = params[:telephone]
+    @url_safe_address = URI.encode(@barbershop.address)
+    @url_of_data = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_address}"
+    @raw_data = open(@url_of_data).read
+    @parsed_data = JSON.parse(@raw_data)
+    @latitude = @parsed_data["results"][0]["geometry"]["location"]["lat"]
+    @longitude = @parsed_data["results"][0]["geometry"]["location"]["lng"]
+    @barbershop.latitude = @latitude
+    @barbershop.longitude = @longitude
 
     if @barbershop.save
       redirect_to "/barbershops", :notice => "Barbershop created successfully."
@@ -46,6 +47,14 @@ class BarbershopsController < ApplicationController
     @barbershop.address = params[:address]
     @barbershop.hood_id = params[:hood_id]
     @barbershop.telephone = params[:telephone]
+    @url_safe_address = URI.encode(@barbershop.address)
+    @url_of_data = "http://maps.googleapis.com/maps/api/geocode/json?address=#{@url_safe_address}"
+    @raw_data = open(@url_of_data).read
+    @parsed_data = JSON.parse(@raw_data)
+    @latitude = @parsed_data["results"][0]["geometry"]["location"]["lat"]
+    @longitude = @parsed_data["results"][0]["geometry"]["location"]["lng"]
+    @barbershop.latitude = @latitude
+    @barbershop.longitude = @longitude
 
     if @barbershop.save
       redirect_to "/barbershops", :notice => "Barbershop updated successfully."

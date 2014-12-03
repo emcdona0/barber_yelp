@@ -48,10 +48,12 @@
           Start time
         </label>
         <div class="col-sm-10">
+
+    <%= time_select :start_time, :hour_step => 15 %>
           <!-- <input type="text" id="start_time" name="start_time" placeholder="Start time" class="form-control" value="<%= @works_at.start_time %>"> -->
-            <select id="start_time" name="start_time" class="form-control" value="<%= @works_at.start_time %>">
+            <select id="start_time" name="start_time" class="form-control" value='<%= @works_at.start_time %>'>
             <option value="">--Select--</option>
-            <option value="0500">05:00 AM</option>
+            <option value="<0500">05:00 AM</option>
             <option value="0600">06:00 AM</option>
             <option value="0700">07:00 AM</option>
             <option value="0800">08:00 AM</option>

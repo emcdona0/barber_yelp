@@ -18,8 +18,8 @@
           <th>Address</th>
           <th>Neighborhood</th>
           <th>Telephone</th>
-          <th></th>
-          <th></th>
+          <th>Lat</th>
+          <th>Long</th>
           <th></th>
         </tr>
       </thead>
@@ -27,10 +27,14 @@
       <tbody>
         <% @barbershops.each do |barbershop| %>
           <tr>
+
+
             <td><%= barbershop.name %></td>
             <td><%= barbershop.address %></td>
             <td><%= barbershop.hood.name %></td>
             <td><%= barbershop.telephone %></td>
+            <td><%= barbershop.latitude %></td>
+            <td><%= barbershop.longitude %></td>
             <td>
               <a href="/barbershops/<%= barbershop.id %>" class="btn btn-primary">
                 <i class="fa fa-search-plus"></i>
@@ -48,8 +52,12 @@
               </a>
             </td>
             <% end %>
+
+      <dd>
+      </dd>
           </tr>
         <% end %>
+
       </tbody>
     </table>
   </div>

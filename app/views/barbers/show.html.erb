@@ -43,10 +43,9 @@
               </thead>
 
               <tbody>
+
                <% WorksAt.where(barber_id: @barber.id).each  do |gig| %>
                <!-- Add HTML table here -->
-
-
                <tr>
                  <td><%= gig.day_of_week %></td>
                  <td><%= gig.start_time.strftime('%l:%M %p') %></td>
@@ -74,7 +73,7 @@
                 </tr>
               </thead>
 
-              <tbody>
+    <tbody>
      <% Rating.where(barber_id: @barber.id).each  do |rating| %>
      <!-- Add HTML table here -->
      <tr>
