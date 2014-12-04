@@ -109,42 +109,17 @@
 
        <dt>Barbershop</dt>
           <dd>
+          <% barber_shop_ids = [] %>
+          <%# WorksAt.where(barber_id: barber.id).each do |worksat|%>
+            <%#  barber_shop_ids.push(worksat.barbershop_id) %>
+          <%# end -%>
 
-          <% WorksAt.where(barber_id: barber.id).uniq.each  do |gig| %>
-          <!-- Add HTML table here -->
+          <% barber_shop_ids = WorksAt.where(barber_id: barber.id).pluck(:barbershop_id).uniq %>
+          <% Barbershop.where(id: barber_shop_ids ).each  do |barbershop| %>
 
-          <% if WorksAt.where(barber_id: barber.id).count > 1 %>
-          <tr>
-          <%= gig.barbershop.name.first %>
-            </tr>
-
-            <% else %>
-          <%= gig.barbershop.name %>
-
-            <% end %>
-
-            <% end %>
+          <tr><%= barbershop.name %></tr>
+          <% end %>
           </dd>
-
-
-   <dt>Barbershop</dt>
-
-             <dd>
-
-          <% WorksAt.where(barber_id: barber.id).each  do |gig| %>
-          <!-- Add HTML table here -->
-
-
-          <tr>
-          <%= gig.barbershop.name.first %>
-            </tr>
-
-
-
-            <% end %>
-          </dd>
-
-
 
           <dt>First name</dt>
           <dd><%= barber.first_name %></dd>

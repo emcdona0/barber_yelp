@@ -29,16 +29,19 @@
           var map;
           function initialize() {
 
-            var myLatlng = new google.maps.LatLng(<%= @barbershop.latitude %>, <%= @barbershop.longitude %>);
+            var myCenter = new google.maps.LatLng(<%= @barbershop.latitude %>, <%= @barbershop.longitude %>);
 
             var mapOptions = {
               zoom: 15,
-              center: myLatlng
+              center: myCenter
             };
 
             map = new google.maps.Map(document.getElementById('map-canvas'),
               mapOptions);
 
+
+
+            var myLatlng = new google.maps.LatLng(<%= @barbershop.latitude %>, <%= @barbershop.longitude %>);
             var marker = new google.maps.Marker({
               position: myLatlng,
               map: map,
@@ -122,3 +125,59 @@
 </div>
 
 <!-- End responsive panel example -->
+
+<!-- Loops through the barbers at this shop-->
+
+
+        <% barber_ids = [] %>
+        <% barber_ids = WorksAt.where(barbershop_id: @barbershop.id).pluck(:barber_id).uniq %>
+
+<% Barber.where(id: barber_ids ).each  do |barber| %>
+
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Barbershop #<%= barber.username  %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-12">
+            <dl class="dl-horizontal">
+
+
+             <div class="media">
+             <a class="media-left" href="/barbers/<%= barber.id %>">
+                <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= barber.username %></h4>
+                <dt>First Name</dt>
+                <dd><%= barber.first_name   %></dd>
+              </div>
+            </div>
+          </dl>
+           <!--  <div class="btn-group btn-group-justified">
+              <a href="/barbershops" class="btn btn-primary">
+                <i class="fa fa-chevron-left"></i>
+              </a> -->
+           <!--    <#% if current_user.admin == true %>
+              <a href="/barbershops/<%= @barbershop.id %>/edit" class="btn btn-warning">
+                <i class="fa fa-edit"></i>
+              </a> -->
+
+        <!--       <a href="/delete_barbershop/<%= @barbershop.id %>" class="btn btn-danger">
+                <i class="fa fa-trash-o"></i>
+              </a> -->
+              <%# end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<!-- End responsive panel example -->
+

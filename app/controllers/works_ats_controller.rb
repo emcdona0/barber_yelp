@@ -38,8 +38,8 @@ class WorksAtsController < ApplicationController
 
     @works_at.barbershop_id = params[:barbershop_id]
     @works_at.barber_id = params[:barber_id]
-    @works_at.start_time = params[:start_time]
-    @works_at.end_time = params[:end_time]
+    @works_at.start_time = DateTime.strptime(params[:start_time], '%H%M')
+    @works_at.end_time = DateTime.strptime(params[:end_time], '%H%M')
     @works_at.day_of_week = params[:day_of_week]
 
     if @works_at.save
