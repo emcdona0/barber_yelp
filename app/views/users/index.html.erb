@@ -31,9 +31,11 @@
         <% @users.each do |user| %>
         <tr>
           <td>
-         <img src="<%= user.avatar_url %>" alt="" class="img-circle" width="80">
-          <%#= image_tag(user.avatar_url), class="media-left" %>
+          <a href="/users/<%= user.id %>">
+          <img src="<%= user.avatar_url %>" alt=""  class="img-circle" width="80">
+          </a>
           </td>
+
           <td><%= user.username %></td>
           <td><%= user.first_name %></td>
 
@@ -94,8 +96,9 @@
       </div>
       <div class="panel-body">
         <dl>
-
+<a href="/users/<%= user.id %>">
          <dd><img src="<%= user.avatar_url %>" alt="" class="img-circle" width="80"></dd>
+         </a>
           <dt>Username</dt>
           <dd><%= user.username %></dd>
 

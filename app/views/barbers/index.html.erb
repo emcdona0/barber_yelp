@@ -34,7 +34,9 @@
         <% @barbers.each do |barber| %>
         <tr>
           <th>
+          <a href="/barbers/<%= barber.id %>">
            <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
+           </a>
          </th>
          <td><%= barber.username %></td>
          <td>

@@ -1,12 +1,16 @@
 <!-- Simple full-width example-->
 
 <div class="page-header">
-  <h1>User #<%= @user.id %></h1>
+  <h1>User #<%= @user.id %> <%= @user.username %></h1>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
+
+
+      <dd><img src="<%= @user.avatar_url %>" alt="" class="img-circle" width="160"></dd>
+
       <dt>Username</dt>
       <dd><%= @user.username %></dd>
 

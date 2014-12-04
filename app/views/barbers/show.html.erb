@@ -7,6 +7,12 @@
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
+
+      <dt>
+      <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="160">
+      </dt>
+      <dd></dd>
+
       <dt>Username</dt>
       <dd><%= @barber.username %></dd>
 
@@ -22,7 +28,11 @@
       <% end %>
 
       <dt>Average rating</dt>
-      <dd><%= @barber.average_rating %></dd>
+         <% if @barber.ratings.average(:rating).present? %>
+         <dd><%= @barber.ratings.average(:rating).round(1) %></dd>
+         <% else %>
+         <dd>No ratings yet</dd>
+         <% end %>
 
       <dt></dt>
       <dt></dt>
@@ -37,6 +47,7 @@
               <thead>
                 <tr>
                   <th>Week Day</th>
+                  <th>Barber shop</th>
                   <th>Start Time</th>
                   <th>End Time</th>
                 </tr>
@@ -48,6 +59,10 @@
                <!-- Add HTML table here -->
                <tr>
                  <td><%= gig.day_of_week %></td>
+                 <td><a href="/barbersshop/<%= gig.barbershop_id %>">
+                 <%= gig.barbershop.name %>
+                 </a>
+                 </td>
                  <td><%= gig.start_time.strftime('%l:%M %p') %></td>
                  <td><%= gig.end_time.strftime('%l:%M %p') %></td>
 
@@ -59,8 +74,8 @@
        </div>
      </dd>
 
-     <!-- Add reviews to the Barber -->
-<dt>Ratings</dt>
+     <!-- Add reviews to the Barber in table layout -->
+<!-- <dt>Ratings</dt>
       <dd>
         <div class="row">
           <div class="col-md-12">
@@ -74,15 +89,14 @@
               </thead>
 
     <tbody>
-     <% Rating.where(barber_id: @barber.id).each  do |rating| %>
-     <!-- Add HTML table here -->
+     <%# Rating.where(barber_id: @barber.id).each  do |rating| %>
      <tr>
-     <td><%= rating.user.username %></td>
-       <td><%= rating.rating %></td>
-       <td><%= rating.comment %></td>
+     <td><%#= rating.user.username %></td>
+       <td><%#= rating.rating %></td>
+       <td><%#= rating.comment %></td>
      </tr>
 
-     <% end %>
+     <%# end %>
 
 
                </tr>
@@ -91,32 +105,10 @@
          </div>
        </div>
      </dd>
-
-
-
-     <dt></dt>
-     <dd>
-      <div class="btn-group">
-        <a href="/barbers" class="btn btn-primary">
-          <i class="fa fa-chevron-left"></i>
-        </a>
-        <% if current_user.admin == true %>
-        <a href="/barbers/<%= @barber.id %>/edit" class="btn btn-warning">
-          <i class="fa fa-edit"></i>
-        </a>
-        <% end %>
-
-        <% if current_user.admin == true %>
-        <a href="/delete_barber/<%= @barber.id %>" class="btn btn-danger">
-          <i class="fa fa-trash-o"></i>
-        </a>
-        <% end %>
-      </div>
-    </dd>
   </dl>
 
 </div>
-</div>
+</div> -->
 
 <!-- End simple full-width example-->
 
@@ -132,10 +124,17 @@
         <div class="row">
           <div class="col-md-12">
             <dl class="dl-horizontal">
-              <dt>Username</dt>
-              <dd><%= @barber.username %></dd>
 
-              <dt>First name</dt>
+             <div class="media">
+              <a class="media-left" href="#">
+                <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="80">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= @barber.username %></h4>
+                <dt>Username</dt>
+                <dd><%= @barber.username %></dd>
+
+                <dt>First name</dt>
               <dd><%= @barber.first_name %></dd>
               <% if current_user.admin == true %>
               <dt>Last name</dt>
@@ -146,7 +145,14 @@
               <% end %>
 
               <dt>Average rating</dt>
-              <dd><%= @barber.average_rating %></dd>
+              <% if @barber.ratings.average(:rating).present? %>
+              <dd><%= @barber.ratings.average(:rating).round(1) %></dd>
+              <% else %>
+              <dd>No ratings yet</dd>
+              <% end %>
+
+              </div>
+            </div>
 
             </dl>
             <div class="btn-group btn-group-justified">
@@ -191,19 +197,19 @@
           <div class="col-md-12">
             <dl class="dl-horizontal">
 
-      <div class="media">
-        <a class="media-left" href="#">
-          <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="80">
-        </a>
-    <div class="media-body">
-    <h4 class="media-heading"><%= rating.user.username %></h4>
-              <dt>Rating</dt>
-              <dd><%= rating.rating  %></dd>
+              <div class="media">
+                <a class="media-left" href="#">
+                  <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="80">
+                </a>
+                <div class="media-body">
+                  <h4 class="media-heading"><%= rating.user.username %></h4>
+                  <dt>Rating</dt>
+                  <dd><%= rating.rating  %></dd>
 
-              <dt>Comments</dt>
-              <dd><%= rating.comment %></dd>
-    </div>
-    </div>
+                  <dt>Comments</dt>
+                  <dd><%= rating.comment %></dd>
+                </div>
+              </div>
 
             </dl>
           </div>
