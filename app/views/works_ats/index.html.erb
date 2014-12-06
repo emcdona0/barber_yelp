@@ -27,8 +27,10 @@
         <% @works_ats.each do |works_at| %>
           <%# start_time = DateTime.strptime(works_at.start_time.to_s, '%H%M').strftime('%l:%M') %>
           <tr>
-            <td><%= works_at.barbershop.name %></td>
-            <td><%= works_at.barber.username %></td>
+            <td><a href="/barbershops/<%= works_at.barbershop.id  %>"><%= works_at.barbershop.name %></td>
+             <td><a href="/barbers/<%= works_at.barber.id %>">
+            <%= works_at.barber.username %></a>
+            </td>
             <td><%= works_at.start_time.strftime('%l:%M %p') %></td>
             <td><%= works_at.end_time.strftime('%l:%M %p') %></td>
             <td><%= works_at.day_of_week %></td>

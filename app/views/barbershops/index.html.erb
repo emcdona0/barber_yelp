@@ -1,3 +1,4 @@
+<div class="content-container">
 <div class="page-header">
   <h1>
     Barbershops
@@ -7,8 +8,63 @@
   </h1>
 </div>
 
-<!-- Simple table layout example -->
+<div class = "one-half-left">
+<!-- Put cordinates into an array -->
+<% @barbershop_coords = [] %>
+<% @barbershops.each do |marker| %>
+<%  @barbershop_coords.push(['test', marker.latitude , marker.longitude]) %>
+<% end %>
 
+<!-- Code for Google Map -->
+
+<div id="map-canvas" style="height: 400px"></div>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+
+
+
+  function initialize() {
+
+    var map;
+    var myCenter = new google.maps.LatLng(41.8750579, -87.6248076);
+
+    var mapOptions = {
+      zoom: 15,
+      center: myCenter
+    };
+
+            // Display a map on the page
+            map = new google.maps.Map(document.getElementById('map-canvas'),
+              mapOptions);
+
+
+            //Multiple Makers
+
+        <% @barbershops.each do |barbershop| %>
+
+            var myLatlng = new google.maps.LatLng(<%= barbershop.latitude %>, <%= barbershop.longitude %>);
+            var marker = new google.maps.Marker({
+              position: myLatlng,
+              map: map,
+              title: '<%= barbershop.name %>'
+
+            });
+       <% end %>
+
+          }
+
+          google.maps.event.addDomListener(window, 'load', initialize);
+
+        </script>
+
+
+</div>
+
+</div>
+<!-- Simple table layout example -->
+<div class="content-container">
+<div class ="one-half-right"
 <div class="row">
   <div class="col-md-12">
     <table class="table table-hover">
@@ -18,20 +74,20 @@
           <th>Address</th>
           <th>Neighborhood</th>
           <th>Telephone</th>
-          <th>Lat</th>
-          <th>Long</th>
+<!--           <th>Lat</th>
+          <th>Long</th> -->
           <th></th>
         </tr>
       </thead>
       <tbody>
         <% @barbershops.each do |barbershop| %>
         <tr>
-          <td><%= barbershop.name %></td>
+          <td><a href="/barbershops/<%= barbershop.id %>"><%= barbershop.name %></a></td>
           <td><%= barbershop.address %></td>
-          <td><%= barbershop.hood.name %></td>
+          <td><a href="/hoods/<%= barbershop.hood.id %>"><%= barbershop.hood.name %></td></a>
           <td><%= barbershop.telephone %></td>
-          <td><%= barbershop.latitude %></td>
-          <td><%= barbershop.longitude %></td>
+          <td><%#= barbershop.latitude %></td>
+          <td><%#= barbershop.longitude %></td>
           <td>
             <a href="/barbershops/<%= barbershop.id %>" class="btn btn-primary">
               <i class="fa fa-search-plus"></i>
@@ -57,6 +113,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </div>
 
 <!-- End simple table layout example -->
@@ -111,101 +168,6 @@
   <% end %>
 </div>
 
-<!-- Put cordinates into an array -->
-<% @barbershop_coords = [] %>
-<% @barbershops.each do |marker| %>
-<%  @barbershop_coords.push(['test', marker.latitude , marker.longitude]) %>
-<% end %>
-
-<%= @barbershop_coords.inspect %>
-
-<!-- Code for Google Map -->
-
-<div id="map-canvas" style="height: 400px"></div>
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-<script>
-
-
-
-  function initialize() {
-
-    var map;
-    var myCenter = new google.maps.LatLng(41.8750579, -87.6248076);
-
-    var mapOptions = {
-      zoom: 15,
-      center: myCenter
-    };
-
-            // Display a map on the page
-            map = new google.maps.Map(document.getElementById('map-canvas'),
-              mapOptions);
-
-
-            //Multiple Makers
-
-        <% @barbershops.each do |barbershop| %>
-
-            var myLatlng = new google.maps.LatLng(<%= barbershop.latitude %>, <%= barbershop.longitude %>);
-            var marker = new google.maps.Marker({
-              position: myLatlng,
-              map: map,
-              title: '<%= barbershop.name %>'
-
-            });
-       <% end %>
-
-
-          //Multiple Makers
-           // var markers = <%#= @barbershop_coords %>;
-           // alert(markers[0]);
-
-
-            //Multiple Makers
-      //     var markers = [
-      // ['Bondi Beach', -33.890542, 151.274856, 4],
-      // ['Coogee Beach', -33.923036, 151.259052, 5],
-      // ['Cronulla Beach', -34.028249, 151.157507, 3],
-      //     ];
-
-          //Info Window Content
-
-
-
-          // //Display mutiple markers on a map
-          // var infoWindow = new google.maps.infoWindow(), marker, i;
-
-
-          // //Loop through our array of markers & palce each one on the map
-          // for( i = 0; i < markers.length; i++ ) {
-
-          //   var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-          //   bounds.extend(position);
-          //   marker = new google.maps.Marker({
-          //     position: position,
-          //     map: map,
-          //     title: markers[i][0]
-          //   });
-
-
-            // var myLatlng = new google.maps.LatLng(<%#= barbershop.latitude %>, <%#= barbershop.longitude %>);
-            // var marker = new google.maps.Marker({
-            //   position: myLatlng,
-            //   map: map,
-            //   title: '<%#= barbershop.name %>'
-            // });
-
-          }
-
-          google.maps.event.addDomListener(window, 'load', initialize);
-
-        </script>
-
-
-
-
-
 <!-- JavaScript for Isotope layout and quicksearch -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>
 <script>
@@ -246,4 +208,7 @@
   }
 </script>
 
+</div>
+
 <!-- End responsive, Isotope-based layout example -->
+

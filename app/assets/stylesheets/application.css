@@ -13,3 +13,62 @@
  *= require_tree .
  *= require_self
  */
+
+
+.background {
+  background-color:   #E7EDF5;
+  background-repeat: repeat-y;
+ }
+
+
+
+ .login-container {
+  width: 250px;
+  height: 300px;
+  margin: 100px;
+  padding: 20px;
+  background-color: #B0C4DE;
+}
+
+.float-right {
+  float: right;
+}
+
+.content-container {
+  width: 960px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  /*background-color: white;*/
+}
+
+.barbershop-map-container {
+
+
+}
+
+.two-third {
+  float: left;
+  width: 66%;
+}
+
+.one-third {
+  float: left;
+  width: 33%;
+}
+
+.one-fourth {
+  float: left;
+  width: 25%;
+}
+
+.one-half-left {
+  float: left;
+  width: 50%;
+}
+.one-half-right {
+  float: right;
+  width: 50%;
+}
+

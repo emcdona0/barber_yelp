@@ -12,7 +12,8 @@
     <table class="table table-hover">
       <thead>
         <tr>
-          <th>Barber</th>
+
+          <th colspan="2" align="center">Barber</th>
           <th>User</th>
           <th>Rating</th>
           <th>Comment</th>
@@ -25,8 +26,16 @@
       <tbody>
         <% @ratings.each do |rating| %>
           <tr>
-            <td><%= rating.barber.username %></td>
-            <td><%= rating.user.username %></td>
+            <td><a href="/barbers/<%= rating.barber.id %>">
+           <img src="<%= rating.barber.avatar_url %>" alt="" class="img-circle" width="40">
+           </a>
+           </td>
+            <td><a href="/barbers/<%= rating.barber.id %>">
+            <%= rating.barber.username %></a></td>
+
+            <td><a href="/users/<%= rating.user.id %>">
+            <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="40">
+            <%= rating.user.username %></td>
             <td><%= rating.rating %></td>
             <td><%= rating.comment %></td>
             <td>
@@ -79,10 +88,15 @@
       <div class="panel-body">
         <dl>
           <dt>Barber</dt>
-          <dd><%= rating.barber.username %></dd>
+          <dd><a href="/barbers/<%= rating.barber.id %>">
+          <img src="<%= rating.barber.avatar_url %>" alt="" class="img-circle" width="40">
+          <%= rating.barber.username %></a>
+          </dd>
 
           <dt>User</dt>
-          <dd><%= rating.user.username %></dd>
+          <dd><a href="/users/<%= rating.user.id %>">
+          <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="40">
+          <%= rating.user.username %></a></dd>
 
           <dt>Rating</dt>
           <dd><%= rating.rating %></dd>

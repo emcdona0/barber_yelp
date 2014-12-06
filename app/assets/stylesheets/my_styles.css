@@ -1,0 +1,113 @@
+/** {
+  box-sizing: border-box;
+  border: thin red solid;
+}*/
+
+.row {
+  clear: both;
+}
+
+.button {
+  color: white;
+  text-decoration: none;
+  height: 30px;
+  width: 150px;
+  display: inline-block;
+  text-align: center;
+  border-radius: 20px;
+  padding-top: 5px;
+
+  background-color: blue;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.splash {
+  height: 200px;
+  background-color: lightgray;
+}
+
+.full-width {
+  float: left;
+  width: 100%;
+}
+
+.two-third {
+  float: left;
+  width: 66%;
+}
+
+.one-third {
+  float: left;
+  width: 33%;
+}
+
+.one-fourth {
+  float: left;
+  width: 25%;
+}
+
+.content-container {
+  width: 960px;
+  height: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.search-container {
+  width: auto;
+  height: 600px;
+  margin: 100px;
+  background-color: white;
+}
+
+body {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  background: none;
+}
+
+.full {
+  background: url(http://www.notchlondon.com/wp-content/uploads/2014/04/Kansas-barber-shop.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.footer {
+
+}
+
+.well {
+  background-color: white;
+}
+
+.splash-nav {
+
+margin-top: 400px;
+  margin-bottom: 200px;
+}
+
+.barber-shop {
+height: 100px;
+width: 100px;
+margin: 50px;
+}
+
+.float-right {
+  float: right;
+}
+
+.fixedbox {
+  height: 650px;
+  background: wh;
+  overflow: scroll;
+}
+
+.center {
+  margin: 0 auto;
+  width: 65%;
+}
