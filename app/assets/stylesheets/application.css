@@ -21,7 +21,6 @@
  }
 
 
-
  .login-container {
   width: 250px;
   height: 300px;
@@ -39,6 +38,7 @@
   height: auto;
   margin-left: auto;
   margin-right: auto;
+
 
   /*background-color: white;*/
 }
@@ -68,7 +68,20 @@
   width: 50%;
 }
 .one-half-right {
+
   float: right;
+  padding-left: 30px;
   width: 50%;
+}
+
+.ratings-container {
+width: 600px;
+float:left;
+
+}
+
+.details-container {
+color : purple;
+font-size: 20px;
 }
 

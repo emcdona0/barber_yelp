@@ -6,23 +6,9 @@
   <h1><%= @barbershop.name %></h1>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <dl class="dl-horizontal">
-      <!-- <dt>Name</dt>
-      <dd><%= @barbershop.name %></dd> -->
+<div class = "one-half-left">
 
-      <dt>Address</dt>
-      <dd><%= @barbershop.address %></dd>
-
-      <dt>Hood</dt>
-      <dd><%= @barbershop.hood.name %></dd>
-
-      <dt>Telephone</dt>
-      <dd><%= @barbershop.telephone %></dd>
-
-      <dt></dt>
-      <dt>Map</dt>
+<dt>Map</dt>
       <dd>
 
         <!-- Code for Google Map -->
@@ -58,7 +44,26 @@
         </script>
 
       </dd>
+</div>
 
+<div class = "one-half-right">
+<!-- <div class="row">
+  <div class="col-md-12"> -->
+    <dl class="dl-horizontal">
+      <!-- <dt>Name</dt>
+      <dd><%= @barbershop.name %></dd> -->
+<div class=" details-container">
+
+      <dt>Address</dt>
+      <dd><%= @barbershop.address %></dd>
+
+      <dt>Hood</dt>
+      <dd><%= @barbershop.hood.name %></dd>
+
+      <dt>Telephone</dt>
+      <dd><%= @barbershop.telephone %></dd>
+
+      <dt></dt>
       <dd>
         <div class="btn-group">
           <a href="/barbershops" class="btn btn-primary">
@@ -76,73 +81,28 @@
         </div>
       </dd>
     </dl>
-
-  </div>
 </div>
+
+ <!--  </div>
+</div> -->
 
 <!-- End simple full-width example-->
 
-<!-- Responsive panel example-->
-
-<div class="row">
-  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Barbershop #<%= @barbershop.id %></h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-12">
-            <dl class="dl-horizontal">
-              <dt>Name</dt>
-              <dd><%= @barbershop.name %></dd>
-
-              <dt>Address</dt>
-              <dd><%= @barbershop.address %></dd>
-
-              <dt>Hood</dt>
-              <dd><%= @barbershop.hood.name %></dd>
-
-              <dt>Telephone</dt>
-              <dd><%= @barbershop.telephone %></dd>
-
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <a href="/barbershops" class="btn btn-primary">
-                <i class="fa fa-chevron-left"></i>
-              </a>
-              <% if current_user.admin == true %>
-              <a href="/barbershops/<%= @barbershop.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-
-              <a href="/delete_barbershop/<%= @barbershop.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-              </a>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- End responsive panel example -->
 
 <!-- Loops through the barbers at this shop-->
 
-
+<div class = "ratings-container">
         <% barber_ids = [] %>
         <% barber_ids = WorksAt.where(barbershop_id: @barbershop.id).pluck(:barber_id).uniq %>
 
         <% Barber.where(id: barber_ids ).each  do |barber| %>
 
         <div class="row">
+        <hr>
           <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h3 class="panel-title">Barbershop #<%= barber.username  %></h3>
+                <h3 class="panel-title"><%= barber.username  %></h3>
               </div>
               <div class="panel-body">
                 <div class="row">
@@ -155,7 +115,7 @@
                         <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading"><%= barber.username %></h4>
+                        <h4 class="media-heading"><a href="/barbers/<%= barber.id %>"><%= barber.username %></a></h4>
                         <dt>First Name</dt>
                         <dd><%= barber.first_name   %></dd>
                       </div>
@@ -170,5 +130,6 @@
     <% end %>
 
 <!-- End responsive panel example -->
+</div>
 </div>
 

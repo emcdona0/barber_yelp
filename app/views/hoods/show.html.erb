@@ -1,139 +1,85 @@
+<div class="content-container">
 <!-- Simple full-width example-->
 
 <div class="page-header">
   <h1><%= @hood.name %></h1>
 </div>
+<div class = "one-half-left">
+  <!-- Put cordinates into an array -->
+  <% @barbershop_coords = [] %>
+  <% @barbershops.each do |marker| %>
+  <%  @barbershop_coords.push(['test', marker.latitude , marker.longitude]) %>
+  <% end %>
 
-<!-- Put cordinates into an array -->
-<% @barbershop_coords = [] %>
-<% @barbershops.each do |marker| %>
-<%  @barbershop_coords.push(['test', marker.latitude , marker.longitude]) %>
-<% end %>
+  <!-- Code for Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+  <div id="map-canvas" style="height: 400px"></div>
+  <script>
 
-<!-- Code for Google Map -->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-        <div id="map-canvas" style="height: 400px"></div>
-        <script>
+    function initialize() {
 
-          function initialize() {
+      var map;
 
-            var map;
+      var myCenter = new google.maps.LatLng( <%= @hood.latitude %>, <%= @hood.longitude %>);
 
-            var myCenter = new google.maps.LatLng( <%= @hood.latitude %>, <%= @hood.longitude %>);
+      var mapOptions = {
+        zoom: 15,
+        center: myCenter
+      };
 
-            var mapOptions = {
-              zoom: 15,
-              center: myCenter
-            };
-
-            map = new google.maps.Map(document.getElementById('map-canvas'),
-              mapOptions);
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
 
   //Multiple Makers
 
-        <% @barbershops.each do |barbershop| %>
+  <% @barbershops.each do |barbershop| %>
 
-            var myLatlng = new google.maps.LatLng(<%= barbershop.latitude %>, <%= barbershop.longitude %>);
-            var marker = new google.maps.Marker({
-              position: myLatlng,
-              map: map,
-              title: '<%= barbershop.name %>'
+  var myLatlng = new google.maps.LatLng(<%= barbershop.latitude %>, <%= barbershop.longitude %>);
+  var marker = new google.maps.Marker({
+    position: myLatlng,
+    map: map,
+    title: '<%= barbershop.name %>'
 
-            });
-       <% end %>
+  });
+  <% end %>
 
-          }
+}
 
-          google.maps.event.addDomListener(window, 'load', initialize);
+google.maps.event.addDomListener(window, 'load', initialize);
 
-        </script>
-      </div>
+</script>
+</div>
 
+    <!-- Simple table layout example -->
+
+      <div class ="one-half-right">
       <div class="row">
         <div class="col-md-12">
-          <dl class="dl-horizontal">
-            <dt>Name</dt>
-            <dd><%= @hood.name %></dd>
-
-            <dt>City</dt>
-            <dd><%= @hood.city %></dd>
-
-            <dt>State</dt>
-            <dd><%= @hood.state %></dd>
-
-            <dt>Lat</dt>
-            <dd><%= @hood.latitude %></dd>
-
-            <dt>Long</dt>
-            <dd><%= @hood.longitude %></dd>
-
-            <dt></dt>
-            <dd>
-              <div class="btn-group">
-                <a href="/hoods" class="btn btn-primary">
-                  <i class="fa fa-chevron-left"></i>
-                </a>
-                <% if current_user.admin == true %>
-                <a href="/hoods/<%= @hood.id %>/edit" class="btn btn-warning">
-                  <i class="fa fa-edit"></i>
-                </a>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Telephone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Barbershop.where(hood_id: @hood.id).each do |shop| %>
+              <tr>
+                <td><a href="/barbershops/<%= shop.id %>"><%= shop.name %></a></td>
+                <td><%= shop.address %></td>
+                <td><%= shop.telephone %></td>
                 <% end %>
-                <% if current_user.admin == true %>
-                <a href="/delete_hood/<%= @hood.id %>" class="btn btn-danger">
-                  <i class="fa fa-trash-o"></i>
-                </a>
-                <% end %>
-              </div>
-            </dd>
-          </dl>
+              </tr>
 
-        </div>
-      </div>
 
-      <!-- End simple full-width example-->
-
-      <!-- Responsive panel example-->
-
-      <div class="row">
-        <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">Hood #<%= @hood.id %></h3>
-            </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-md-12">
-                  <dl class="dl-horizontal">
-                    <dt>Name</dt>
-                    <dd><%= @hood.name %></dd>
-
-                    <dt>City</dt>
-                    <dd><%= @hood.city %></dd>
-
-                    <dt>State</dt>
-                    <dd><%= @hood.state %></dd>
-
-                  </dl>
-                  <div class="btn-group btn-group-justified">
-                    <a href="/hoods" class="btn btn-primary">
-                      <i class="fa fa-chevron-left"></i>
-                    </a>
-                    <% if current_user.admin == true %>
-                    <a href="/hoods/<%= @hood.id %>/edit" class="btn btn-warning">
-                      <i class="fa fa-edit"></i>
-                    </a>
-                    <% end %>
-                    <% if current_user.admin == true %>
-                    <a href="/delete_hood/<%= @hood.id %>" class="btn btn-danger">
-                      <i class="fa fa-trash-o"></i>
-                      <% end %>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            </tbody>
+          </table>
           </div>
-        </div>
-      </div>
+          </div>
+          </div>
 
-      <!-- End responsive panel example -->
+
+
+
+

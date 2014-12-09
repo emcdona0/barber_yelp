@@ -1,191 +1,91 @@
 <div class="content-container">
-<!-- Simple full-width example-->
+  <!-- Simple full-width example-->
 
-<div class="page-header">
-  <h1>Barber #<%= @barber.id %></h1>
-</div>
+  <div class="page-header">
+    <h1>Barber #<%= @barber.id %></h1>
+  </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <dl class="dl-horizontal">
+  <div class="one-third">
+    <div class="row">
+      <div class="col-md-12">
+        <dl class="dl-horizontal">
 
-      <dt>
-      <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="160">
-      </dt>
-      <dd></dd>
+          <dt>
+            <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="160">
+          </dt>
+          <dd></dd>
 
-      <dt>Username</dt>
-      <dd><%= @barber.username %></dd>
+          <dt>Username</dt>
+          <dd><%= @barber.username %></dd>
 
-      <dt>First name</dt>
-      <dd><%= @barber.first_name %></dd>
+          <dt>First name</dt>
+          <dd><%= @barber.first_name %></dd>
 
-      <% if current_user.admin == true %>
-      <dt>Last name</dt>
-      <dd><%= @barber.last_name %></dd>
+          <% if current_user.admin == true %>
+          <dt>Last name</dt>
+          <dd><%= @barber.last_name %></dd>
 
-      <dt>Telephone</dt>
-      <dd><%= @barber.telephone %></dd>
-      <% end %>
+          <dt>Telephone</dt>
+          <dd><%= @barber.telephone %></dd>
+          <% end %>
 
-      <dt>Average rating</dt>
-         <% if @barber.ratings.average(:rating).present? %>
-         <dd><%= @barber.ratings.average(:rating).round(1) %></dd>
-         <% else %>
-         <dd>No ratings yet</dd>
-         <% end %>
+          <dt>Average rating</dt>
+          <% if @barber.ratings.average(:rating).present? %>
+          <dd><%= @barber.ratings.average(:rating).round(1) %></dd>
+          <% else %>
+          <dd>No ratings yet</dd>
+          <% end %>
 
-      <dt></dt>
-      <dt></dt>
+          <dt></dt>
+          <dt></dt>
 
-<!-- Add schdule to the Barber -->
-
-      <dt>Schedule</dt>
-      <dd>
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>Week Day</th>
-                  <th>Barber shop</th>
-                  <th>Start Time</th>
-                  <th>End Time</th>
-                </tr>
-              </thead>
-
-              <tbody>
-
-               <% WorksAt.where(barber_id: @barber.id).each  do |gig| %>
-               <!-- Add HTML table here -->
-               <tr>
-                 <td><%= gig.day_of_week %></td>
-                 <td><a href="/barbershops/<%= gig.barbershop_id %>">
-                 <%= gig.barbershop.name %>
-                 </a>
-                 </td>
-                 <td><%= gig.start_time.strftime('%l:%M %p') %></td>
-                 <td><%= gig.end_time.strftime('%l:%M %p') %></td>
-
-                 <% end %>
-               </tr>
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </dd>
-
-     <!-- Add reviews to the Barber in table layout -->
-<!-- <dt>Ratings</dt>
-      <dd>
-        <div class="row">
-          <div class="col-md-12">
-            <table class="table table-hover">
-              <thead>
-                <tr>
-                  <th>User </th>
-                  <th>Rating</th>
-                  <th>Comments</th>
-                </tr>
-              </thead>
-
-    <tbody>
-     <%# Rating.where(barber_id: @barber.id).each  do |rating| %>
-     <tr>
-     <td><%#= rating.user.username %></td>
-       <td><%#= rating.rating %></td>
-       <td><%#= rating.comment %></td>
-     </tr>
-
-     <%# end %>
-
-
-               </tr>
-             </tbody>
-           </table>
-         </div>
-       </div>
-     </dd>
-  </dl>
-
-</div>
-</div> -->
-
-<!-- End simple full-width example-->
-<hr>
-
-<!-- Responsive panel example-->
-
-<div class="row">
-  <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Barber #<%= @barber.id %></h3>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-md-12">
-            <dl class="dl-horizontal">
-
-             <div class="media">
-              <a class="media-left" href="#">
-                <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="80">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"><%= @barber.username %></h4>
-                <dt>Username</dt>
-                <dd><%= @barber.username %></dd>
-
-                <dt>First name</dt>
-              <dd><%= @barber.first_name %></dd>
-              <% if current_user.admin == true %>
-              <dt>Last name</dt>
-              <dd><%= @barber.last_name %></dd>
-
-              <dt>Telephone</dt>
-              <dd><%= @barber.telephone %></dd>
-              <% end %>
-
-              <dt>Average rating</dt>
-              <% if @barber.ratings.average(:rating).present? %>
-              <dd><%= @barber.ratings.average(:rating).round(1) %></dd>
-              <% else %>
-              <dd>No ratings yet</dd>
-              <% end %>
-
-              </div>
-            </div>
-
-            </dl>
-            <div class="btn-group btn-group-justified">
-              <a href="/barbers" class="btn btn-primary">
-                <i class="fa fa-chevron-left"></i>
-              </a>
-
-              <% if current_user.admin == true %>
-              <a href="/barbers/<%= @barber.id %>/edit" class="btn btn-warning">
-                <i class="fa fa-edit"></i>
-              </a>
-              <% end %>
-
-              <% if current_user.admin == true %>
-              <a href="/delete_barber/<%= @barber.id %>" class="btn btn-danger">
-                <i class="fa fa-trash-o"></i>
-                <% end %>
-              </a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- End responsive panel example -->
+    <!-- Add schdule to the Barber -->
+  <div class="two-third">
+    <dt>Schedule</dt>
+    <dd>
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Week Day</th>
+                <th>Barber shop</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+             <% WorksAt.where(barber_id: @barber.id).each  do |gig| %>
+             <!-- Add HTML table here -->
+             <tr>
+               <td><%= gig.day_of_week %></td>
+               <td><a href="/barbershops/<%= gig.barbershop_id %>">
+                 <%= gig.barbershop.name %>
+               </a>
+             </td>
+             <td><%= gig.start_time.strftime('%l:%M %p') %></td>
+             <td><%= gig.end_time.strftime('%l:%M %p') %></td>
+
+             <% end %>
+           </tr>
+         </tbody>
+       </table>
+     </div>
+   </div>
+ </dd>
+ </div>
+
+<hr>
 
 <!-- Responsive Rating panel example-->
-
-  <% Rating.where(barber_id: @barber.id).each  do |rating| %>
+<div class="ratings-container">
+<% Rating.where(barber_id: @barber.id).each  do |rating| %>
 <div class="row">
   <div class="col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
     <div class="panel panel-default">
@@ -221,6 +121,7 @@
   </div>
 </div>
 <% end %>
+</div>
 
 <!-- End responsive panel example -->
 </div>

@@ -8,6 +8,7 @@
   </h1>
 </div>
 
+ <% if current_user.admin == true %>
 <!-- Simple table layout example -->
 
 <div class="row">
@@ -17,7 +18,6 @@
         <tr>
           <th> </th>
           <th>Username</th>
-          <th>Barbershop</th>
           <th>First name</th>
           <% if current_user.admin == true %>
           <th>Last name</th>
@@ -40,11 +40,6 @@
            </a>
          </th>
          <td><%= barber.username %></td>
-         <td>
-         <% barber.barbershops.uniq.each do |barbershop| %>
-          </td>
-          <% end %>
-
          <td><%= barber.first_name %></td>
          <% if current_user.admin == true %>
          <td><%= barber.last_name %></td>
@@ -63,14 +58,14 @@
             <i class="fa fa-search-plus"></i>
           </a>
         </td>
-        <% if current_user.admin == true %>
+
         <td>
           <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
         </td>
-        <% end %>
-        <% if current_user.admin == true %>
+
+
         <td>
           <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
@@ -78,11 +73,12 @@
         </td>
         <% end %>
       </tr>
-      <% end %>
+
     </tbody>
   </table>
 </div>
 </div>
+<% end %>
 
 <!-- End simple table layout example -->
 
@@ -105,9 +101,13 @@
       </div>
       <div class="panel-body">
         <dl>
-          <dd>  <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80"></dd>
+          <dd>
+          <a href="/barbers/<%= barber.id %>">
+          <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
+          </a>
+          </dd>
           <dt>Username</dt>
-          <dd><%= barber.username %></dd>
+          <dd><a href="/barbers/<%= barber.id %>"><%= barber.username %></a></dd>
 
        <dt>Barbershop</dt>
           <dd>
@@ -119,7 +119,7 @@
           <% barber_shop_ids = WorksAt.where(barber_id: barber.id).pluck(:barbershop_id).uniq %>
           <% Barbershop.where(id: barber_shop_ids ).each  do |barbershop| %>
 
-          <tr><%= barbershop.name %></tr>
+          <tr><a href="/barbers/<%= barbershop.id %>"><%= barbershop.name %></tr></a>
           <% end %>
           </dd>
 
@@ -142,21 +142,22 @@
           <% end %>
 
         </dl>
+        <% if current_user.admin == true %>
         <div class="btn-group btn-group-justified">
           <a href="/barbers/<%= barber.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-          <% if current_user.admin == true %>
+
           <a href="/barbers/<%= barber.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
-          <% end %>
-          <% if current_user.admin == true %>
+
           <a href="/delete_barber/<%= barber.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
-          <% end %>
+
         </div>
+        <% end %>
       </div>
     </div>
   </div>
