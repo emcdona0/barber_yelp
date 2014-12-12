@@ -57,7 +57,7 @@
       <dt>Address</dt>
       <dd><%= @barbershop.address %></dd>
 
-      <dt>Hood</dt>
+      <dt>Neighborhood</dt>
       <dd><%= @barbershop.hood.name %></dd>
 
       <dt>Telephone</dt>
@@ -115,9 +115,17 @@
                         <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
                       </a>
                       <div class="media-body">
-                        <h4 class="media-heading"><a href="/barbers/<%= barber.id %>"><%= barber.username %></a></h4>
+                        <h4 class="media-heading"><a href="/barbers/<%= barber.id %>">
+                        <%= barber.username %></a></h4>
                         <dt>First Name</dt>
-                        <dd><%= barber.first_name   %></dd>
+                        <dd><%= barber.first_name %></dd>
+                        <dt>Average rating</dt>
+          <% if barber.ratings.average(:rating).present? %>
+          <dd><%= barber.ratings.average(:rating).round(1) %></dd>
+          <% else %>
+          <dd>No ratings yet</dd>
+          <% end %>
+
                       </div>
                     </div>
                   </dl>

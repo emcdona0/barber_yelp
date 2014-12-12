@@ -5,6 +5,7 @@
   </h1>
 </div>
 
+<% if current_user.admin == true %>
 <!-- Simple table layout example -->
 
 <div class="row">
@@ -45,7 +46,7 @@
             </td>
 
             <td>
-              <% if current_user == rating.user || current_user.admin == true %>
+              <% if current_user.admin == true %>
               <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
                 <i class="fa fa-edit"></i>
               </a>
@@ -67,6 +68,7 @@
 </div>
 
 <!-- End simple table layout example -->
+<% end %>
 
 <!-- Responsive, Isotope-based layout example -->
 
@@ -83,7 +85,7 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Rating #<%= rating.id %></h3>
+        <h3 class="panel-title"><%= rating.barber.username %></h3>
       </div>
       <div class="panel-body">
         <dl>
@@ -109,7 +111,7 @@
           <a href="/ratings/<%= rating.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
-          <% if current_user == rating.user || current_user.admin == true %>
+          <% if current_user.admin == true %>
           <a href="/ratings/<%= rating.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
@@ -125,6 +127,7 @@
       </div>
     </div>
   </div>
+
 <% end %>
 </div>
 

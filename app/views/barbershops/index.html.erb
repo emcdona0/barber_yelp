@@ -84,7 +84,7 @@
         <tr>
           <td><a href="/barbershops/<%= barbershop.id %>"><%= barbershop.name %></a></td>
           <td><%= barbershop.address %></td>
-          <td><a href="/hoods/<%= barbershop.hood.id %>"><%= barbershop.hood.name %></td></a>
+          <td><a href="/hoods/<%= barbershop.hood.id %>"><%= barbershop.hood.name %></a></td>
           <td><%= barbershop.telephone %></td>
           <td><%#= barbershop.latitude %></td>
           <td><%#= barbershop.longitude %></td>
@@ -118,55 +118,6 @@
 
 <!-- End simple table layout example -->
 
-<!-- Responsive, Isotope-based layout example -->
-
-<!-- <div class="row">
-  <div class="col-xs-12">
-    <input type="text" id="quicksearch" placeholder="Search Barbershops (start typing)" class="form-control">
-  </div>
-</div>
-<hr>
-<div class="row isotope-container"> -->
-  <%# @barbershops.each do |barbershop| %>
- <!--  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
-    <div class="panel panel-default">
-      <div class="panel-heading"> -->
-       <!--  <h3 class="panel-title">Barbershop #<%#= barbershop.id %></h3>
-      </div>
-      <div class="panel-body">
-        <dl>
-          <dt>Name</dt> -->
-      <!--     <dd><%#= barbershop.name %></dd>
-
-          <dt>Address</dt>
-          <dd><%#= barbershop.address %></dd>
-
-          <dt>Hood</dt>
-          <dd><%#= barbershop.hood.name %></dd>
-
-          <dt>Telephone</dt>
-          <dd><%#= barbershop.telephone %></dd>
-
-        </dl>
-        <div class="btn-group btn-group-justified">
-          <a href="/barbershops/<%#= barbershop.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-          <%# if current_user.admin == true %>
-          <a href="/barbershops/<%#= barbershop.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-
-          <a href="/delete_barbershop/<%#= barbershop.id %>" class="btn btn-danger">
-            <i class="fa fa-trash-o"></i>
-          </a>
-          <%# end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <%# end %>
-</div> -->
 
 <!-- JavaScript for Isotope layout and quicksearch -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>

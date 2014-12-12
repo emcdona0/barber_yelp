@@ -2,7 +2,7 @@
   <!-- Simple full-width example-->
 
   <div class="page-header">
-    <h1>Barber #<%= @barber.id %></h1>
+    <h1><%= @barber.username %></h1>
   </div>
 
   <div class="one-third">
@@ -14,9 +14,6 @@
             <img src="<%= @barber.avatar_url %>" alt="" class="img-circle" width="160">
           </dt>
           <dd></dd>
-
-          <dt>Username</dt>
-          <dd><%= @barber.username %></dd>
 
           <dt>First name</dt>
           <dd><%= @barber.first_name %></dd>
@@ -100,7 +97,7 @@
             <dl class="dl-horizontal">
 
               <div class="media">
-                <a class="media-left" href="#">
+                <a class="media-left" href="/users/<%= rating.user_id %>">
                   <img src="<%= rating.user.avatar_url %>" alt="" class="img-circle" width="80">
                 </a>
                 <div class="media-body">

@@ -1,4 +1,7 @@
 <div class="content-container">
+
+
+<% if current_user.admin == true %>
 <div class="page-header">
   <h1>
     Favorites
@@ -6,6 +9,20 @@
   </h1>
 </div>
 
+<% else %>
+<div class="page-header">
+  <h1>
+     My Favorites
+    <a href="/favorites/new" class="btn btn-lg btn-success"><i class="fa fa-plus"></i></a>
+  </h1>
+</div>
+<% end %>
+
+
+
+
+
+<% if current_user.admin == true %>
 <!-- Simple table layout example -->
 
 <div class="row">
@@ -67,6 +84,7 @@
 </div>
 
 <!-- End simple table layout example -->
+<% end %>
 
 <!-- Responsive, Isotope-based layout example -->
 
@@ -80,38 +98,47 @@
 
 <div class="row isotope-container">
 <% @favorites.each do |favorite| %>
+
+<% if current_user == favorite.user || current_user.admin == true %>
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Favorite #<%= favorite.id %></h3>
+        <h3 class="panel-title"><a href="/barbers/<%= favorite.barber.id %>"><%= favorite.barber.username %></a></h3>
       </div>
       <div class="panel-body">
         <dl>
+
+<% if  current_user.admin == true %>
           <dt>User</dt>
           <dd><%= favorite.user.username %></dd>
 
           <dt>Barber</dt>
           <dd><%= favorite.barber.username %></dd>
+          <% end %>
 
           <dt>Barbershop</dt>
-          <dd><%= favorite.barbershop.name %></dd>
+          <dd><a href="/barbershops/<%= favorite.barbershop.id %>"><%= favorite.barbershop.name %></a></dd>
+
+          <dt>Favorite created on</dt>
+          <dd><%= favorite.created_at.strftime('%b %d, %Y') %></dd>
+
 
           <dt>Notes</dt>
           <dd><%= favorite.notes %></dd>
 
         </dl>
+        <% if current_user.admin == true %>
         <div class="btn-group btn-group-justified">
           <a href="/favorites/<%= favorite.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
+          <% end %>
 
            <% if current_user == favorite.user || current_user.admin == true %>
           <a href="/favorites/<%= favorite.id %>/edit" class="btn btn-warning">
             <i class="fa fa-edit"></i>
           </a>
-          <% end %>
 
-          <% if current_user == favorite.user || current_user.admin == true %>
           <a href="/delete_favorite/<%= favorite.id %>" class="btn btn-danger">
             <i class="fa fa-trash-o"></i>
           </a>
@@ -122,9 +149,12 @@
       </div>
     </div>
   </div>
+  <% end %>
 <% end %>
 </div>
 </div>
+
+
 
 <!-- JavaScript for Isotope layout and quicksearch -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.isotope/2.0.0/isotope.pkgd.min.js"></script>

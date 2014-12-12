@@ -97,7 +97,7 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 isotope-item">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3 class="panel-title">Barber #<%= barber.id %></h3>
+        <h3 class="panel-title"><a href="/barbers/<%= barber.id %>"><%= barber.username %></a></h3>
       </div>
       <div class="panel-body">
         <dl>
@@ -106,9 +106,6 @@
           <img src="<%= barber.avatar_url %>" alt="" class="img-circle" width="80">
           </a>
           </dd>
-          <dt>Username</dt>
-          <dd><a href="/barbers/<%= barber.id %>"><%= barber.username %></a></dd>
-
        <dt>Barbershop</dt>
           <dd>
           <% barber_shop_ids = [] %>
@@ -116,10 +113,12 @@
             <%#  barber_shop_ids.push(worksat.barbershop_id) %>
           <%# end -%>
 
-          <% barber_shop_ids = WorksAt.where(barber_id: barber.id).pluck(:barbershop_id).uniq %>
-          <% Barbershop.where(id: barber_shop_ids ).each  do |barbershop| %>
+          <%# barber_shop_ids = WorksAt.where(barber_id: barber.id).pluck(:barbershop_id).uniq %>
+          <%# Barbershop.where(id: barber_shop_ids ).each  do |barbershop| %>
 
-          <tr><a href="/barbers/<%= barbershop.id %>"><%= barbershop.name %></tr></a>
+          <% barber.barbershops.uniq.each do |barbershop| %>
+
+          <tr><a href="/barbershops/<%= barbershop.id %>"><%= barbershop.name %></tr></a>
           <% end %>
           </dd>
 
